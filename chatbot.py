@@ -281,8 +281,15 @@ def simulated_backend_call(entity: str, intent: str, query_params: Dict[str, Any
     if entity == "commande":
         if intent == "get":
             # Construire la réponse selon les paramètres demandés
-            if query_params.get("reference"):
-                payload["reference"] = query_params["reference"]
+            commande_id = query_params.get("reference") or query_params.get("id") or query_params.get("numero")
+            if not commande_id:
+                payload["status"] = 400
+                payload["message"] = "Référence de commande requise"
+                return payload
+            else:
+                payload["commande_id"] = commande_id
+                payload["status"] = 200
+                payload["details"] = f"Détails commande #{commande_id}"
                 payload["vendor"] = query_params.get("vendor", "TechCorp")
                 payload["total"] = query_params.get("total", 1500.00)
                 payload["billing_status"] = query_params.get("billing_status", "en_attente")
@@ -291,19 +298,14 @@ def simulated_backend_call(entity: str, intent: str, query_params: Dict[str, Any
                 payload["priority"] = query_params["priority"]
                 payload["orders_found"] = 3
                 
-            if query_params.get("vendor"):
-                payload["vendor"] = query_params["vendor"]
-                payload["orders_count"] = 5
-                payload["avg_order_value"] = 2500.00
-                
             # Dates et délais
             if query_params.get("order_deadline"):
-                payload["order_deadline"] = query_params["order_deadline"]
+                payload["order_deadline"] = query_params.get("order_deadline", "2023-12-31")
             if query_params.get("confirmation_date"):
-                payload["confirmation_date"] = query_params["confirmation_date"]
+                payload["confirmation_date"] = query_params.get("confirmation_date", "2023-12-31")
             if query_params.get("expected_arrival"):
-                payload["expected_arrival"] = query_params["expected_arrival"]
-                
+                payload["expected_arrival"] = query_params.get("expected_arrival", "2023-12-31")
+
         elif intent == "post":
             required_fields = ["vendor", "products", "total"]
             missing_fields = [field for field in required_fields if not query_params.get(field)]
@@ -312,6 +314,7 @@ def simulated_backend_call(entity: str, intent: str, query_params: Dict[str, Any
                 payload["status"] = 400
                 payload["message"] = f"Champs requis manquants: {', '.join(missing_fields)}"
             else:
+                payload["status"] = 200
                 payload["reference"] = f"PO{hash(str(query_params)) % 10000:04d}"
                 payload["vendor"] = query_params["vendor"]
                 payload["total"] = query_params["total"]
@@ -329,13 +332,17 @@ def simulated_backend_call(entity: str, intent: str, query_params: Dict[str, Any
     elif entity == "produit":
         if intent == "get":
             if query_params.get("products"):
+                payload["status"] = 200
                 payload["products"] = query_params["products"]
                 payload["description"] = query_params.get("description", "Description standard")
                 payload["unitprice"] = query_params.get("unitprice", 299.99)
                 payload["quantity"] = query_params.get("quantity", 10)
+            else:
+                payload["status"] = 400
+                payload["message"] = "Paramètre 'products' requis "
                 
         elif intent == "post":
-            required_fields = ["products", "unitprice"]
+            required_fields = ["products", "unitprice","vendor","order_deadline"]
             missing_fields = [field for field in required_fields if not query_params.get(field)]
             
             if missing_fields:
@@ -357,21 +364,26 @@ def simulated_backend_call(entity: str, intent: str, query_params: Dict[str, Any
                 payload["purchased_last_7_days"] = query_params.get("purchased_last_7_days", 2)
                 payload["fiscal_position"] = query_params.get("fiscal_position", "Standard")
                 payload["payment_terms"] = query_params.get("payment_terms", "30 jours")
+            else:
+                payload["status"] = 400
+                payload["message"] = "Paramètre 'vendor' requis"
 
     # TRAITEMENT DES BUYERS (acheteurs)
     elif entity == "buyer":
         if intent == "get":
             if query_params.get("buyer"):
+                payload["status"] = 200
                 payload["buyer"] = query_params["buyer"]
                 payload["orders_managed"] = 15
                 payload["total_purchases_this_month"] = 45000.00
             else:
-                payload["all_buyers"] = ["Jean Dupont", "Marie Martin", "Pierre Durand"]
-                payload["active_buyers_count"] = 3
+                payload["status"] = 400
+                payload["message"] = "Paramètre 'buyer' requis"
 
     # TRAITEMENT DES RFQ
     elif entity == "RFQ":
         if intent == "get":
+            
             payload["rfqs_sent_last_7_days"] = query_params.get("rfqs_sent_last_7_days", 4)
             payload["vendor"] = query_params.get("vendor", "Tous fournisseurs")
             
@@ -475,15 +487,20 @@ def run_chatbot(user_question: str):
 # 🔟 Tests étendus
 # ------------------------------
 if __name__ == "__main__":
-    # Tests avec les nouveaux paramètres
-    run_chatbot("Afficher les commandes urgentes du fournisseur TechSolutions")
-    run_chatbot("Quelle est la référence fournisseur de la commande PO1234?")
-    run_chatbot("Créer une commande avec le fournisseur ABC Corp pour 2500 euros")
-    run_chatbot("Combien de RFQ ont été envoyées cette semaine?")
-    run_chatbot("Quel est le délai d'achat moyen pour le fournisseur XYZ?")
-    run_chatbot("Afficher les produits avec une quantité supérieure à 50")
-    run_chatbot("Quelle est la date de confirmation de la commande REF123?")
-    # Tests spécifiques buyer
-    run_chatbot("Qui est l'acheteur de la commande PO456?")
-    run_chatbot("Afficher toutes les commandes de l'acheteur Jean Dupont")
-    run_chatbot("Quel acheteur gère le plus de commandes?")
+    # # Tests avec les nouveaux paramètres
+    # run_chatbot("Afficher les commandes urgentes du fournisseur TechSolutions")
+    # run_chatbot("Quelle est la référence fournisseur de la commande PO1234?")
+    # run_chatbot("Créer une commande avec le fournisseur ABC Corp pour 2500 euros")
+    # run_chatbot("Combien de RFQ ont été envoyées cette semaine?")
+    # run_chatbot("Quel est le délai d'achat moyen pour le fournisseur XYZ?")
+    # run_chatbot("Afficher les produits avec une quantité supérieure à 50")
+    # run_chatbot("Quelle est la date de confirmation de la commande REF123?")
+    # # Tests spécifiques buyer
+    # run_chatbot("Qui est l'acheteur de la commande PO456?")
+    # run_chatbot("Afficher toutes les commandes de l'acheteur Jean Dupont")
+    # run_chatbot("Quel acheteur gère le plus de commandes?")
+    run_chatbot("Quel est le prix du produit Laptop Dell ?")
+    run_chatbot("Créer une commande pour le produit X avec le statut 'en attente' pour la commande #5299 et un prix de 14950.")
+    run_chatbot("Quelle est la commande 1234 ?")
+    run_chatbot("Donne-moi les détails du produit 'Ordinateur Portable'.")
+    
