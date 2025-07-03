@@ -1,0 +1,5038 @@
+[
+  {
+    "question": "Quel est le statut de la commande PO100 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO100",
+      "fields": "status"
+    },
+    "backend_response": "purchase order",
+    "final_response": "Le statut de la commande PO100 est 'purchase order'."
+  },
+  {
+    "question": "Afficher les commandes urgentes du fournisseur TechSolutions",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "vendor": "TechSolutions",
+      "priority": "urgent",
+      "fields": "reference,total,deadline"
+    },
+    "backend_response": [
+      {"reference": "PO101", "total": 3200.00, "deadline": "2024-12-10"},
+      {"reference": "PO102", "total": 4500.00, "deadline": "2024-12-05"}
+    ],
+    "final_response": "Les commandes urgentes de TechSolutions sont : PO101 (3200.00€, échéance 10/12) et PO102 (4500.00€, échéance 05/12)."
+  },
+  {
+    "question": "Qui est l'acheteur de la commande PO103 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO103",
+      "fields": "buyer"
+    },
+    "backend_response": "Marie Dupont",
+    "final_response": "L'acheteur de la commande PO103 est Marie Dupont."
+  },
+  {
+    "question": "Quelles sont les activités de la commande PO104 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO104",
+      "fields": "activities"
+    },
+    "backend_response": [
+      {"type": "email", "date": "2024-11-15", "description": "Confirmation commande"},
+      {"type": "call", "date": "2024-11-18", "description": "Suivi livraison"}
+    ],
+    "final_response": "Les activités de PO104 : Email le 15/11 (Confirmation commande) et Appel le 18/11 (Suivi livraison)."
+  },
+  {
+    "question": "Quel est le document source de PO105 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO105",
+      "fields": "source_document"
+    },
+    "backend_response": "RFQ-2024-100",
+    "final_response": "Le document source de PO105 est RFQ-2024-100."
+  },
+  {
+    "question": "Montant HT de la commande PO106",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO106",
+      "fields": "untaxed"
+    },
+    "backend_response": 1800.00,
+    "final_response": "Le montant HT de PO106 est 1800.00€."
+  },
+  {
+    "question": "Statut de facturation de PO107",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO107",
+      "fields": "billing_status"
+    },
+    "backend_response": "waiting to bill",
+    "final_response": "Le statut de facturation de PO107 est 'waiting to bill'."
+  },
+  {
+    "question": "Commandes avec statut 'cancelled' ce mois",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "status": "cancelled",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO108", "vendor": "CancelCorp", "total": 1200.00},
+      {"reference": "PO109", "vendor": "StopSupply", "total": 850.00}
+    ],
+    "final_response": "Commandes annulées ce mois : PO108 (CancelCorp, 1200.00€) et PO109 (StopSupply, 850.00€)."
+  },
+  {
+    "question": "Valeur moyenne des commandes cette semaine",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "avg_order_value",
+      "period": "this_week"
+    },
+    "backend_response": 2850.75,
+    "final_response": "La valeur moyenne des commandes cette semaine est 2850.75€."
+  },
+  {
+    "question": "Montant total acheté hier",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "purchased_amount",
+      "period": "yesterday"
+    },
+    "backend_response": 12500.00,
+    "final_response": "Le montant total acheté hier est 12500.00€."
+  },
+  {
+    "question": "Délai moyen d'achat pour le fournisseur FastDeliver",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "lead_time_purchase",
+      "vendor": "FastDeliver"
+    },
+    "backend_response": 7.2,
+    "final_response": "Le délai moyen d'achat pour FastDeliver est 7.2 jours."
+  },
+  {
+    "question": "Mes demandes de prix à envoyer",
+    "entity": "rfq",
+    "intent": "get",
+    "query_params": {
+      "status": "to_send",
+      "scope": "my"
+    },
+    "backend_response": [
+      {"reference": "RFQ-101", "vendor": "TechPartners", "products": ["Server", "Router"]}
+    ],
+    "final_response": "Votre demande de prix à envoyer : RFQ-101 (TechPartners - Server, Router)."
+  },
+  {
+    "question": "Demandes de prix en attente de réponse",
+    "entity": "rfq",
+    "intent": "get",
+    "query_params": {
+      "status": "waiting",
+      "scope": "all"
+    },
+    "backend_response": [
+      {"reference": "RFQ-102", "vendor": "GlobalSupply", "sent_date": "2024-11-20"},
+      {"reference": "RFQ-103", "vendor": "EuroTech", "sent_date": "2024-11-22"}
+    ],
+    "final_response": "Demandes en attente : RFQ-102 (GlobalSupply, envoyée 20/11) et RFQ-103 (EuroTech, envoyée 22/11)."
+  },
+  {
+    "question": "Produits de la commande PO110",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO110",
+      "fields": "products"
+    },
+    "backend_response": [
+      {"name": "Laptop Pro", "quantity": 3, "unitprice": 1200.00},
+      {"name": "Mouse", "quantity": 10, "unitprice": 25.00}
+    ],
+    "final_response": "Produits de PO110 : Laptop Pro (3×1200.00€) et Mouse (10×25.00€)."
+  },
+  {
+    "question": "Quantité reçue du produit 'Keyboard' dans PO111",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO111",
+      "name": "Keyboard",
+      "fields": "received"
+    },
+    "backend_response": 8,
+    "final_response": "8 unités de Keyboard ont été reçues pour PO111."
+  },
+  {
+    "question": "Modifier le statut de PO112 en 'cancelled'",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO112",
+      "status": "cancelled"
+    },
+    "backend_response": {"success": true, "message": "Order status updated"},
+    "final_response": "Le statut de PO112 a été mis à jour à 'cancelled'."
+  },
+  {
+    "question": "Créer une commande pour TechCorp avec 5 Laptops",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "vendor": "TechCorp",
+      "products": [{"name": "Laptop", "quantity": 5}]
+    },
+    "backend_response": {"id": "PO113", "status": "created"},
+    "final_response": "Nouvelle commande PO113 créée pour TechCorp (5 Laptops)."
+  },
+  {
+    "question": "Supprimer la commande PO114",
+    "entity": "order",
+    "intent": "delete",
+    "query_params": {
+      "reference": "PO114"
+    },
+    "backend_response": {"success": true, "message": "Order deleted"},
+    "final_response": "La commande PO114 a été supprimée."
+  },
+  {
+    "question": "Quel est le statut de la commande PO800 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO800",
+      "fields": "status"
+    },
+    "backend_response": 404,
+    "final_response": "Erreur : La commande PO800 n'existe pas dans le système."
+  },
+  {
+    "question": "Factures impayées avec échéance dépassée",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "payment_status": "not paid",
+      "filter": "overdue",
+      "fields": "numero,customer,due_date"
+    },
+    "backend_response": [
+      {"numero": "INV-101", "customer": "Client A", "due_date": "2024-11-10"},
+      {"numero": "INV-102", "customer": "Client B", "due_date": "2024-11-15"}
+    ],
+    "final_response": "Factures impayées en retard : INV-101 (Client A, échue 10/11) et INV-102 (Client B, échue 15/11)."
+  },
+  {
+    "question": "Modifier la date d'échéance de INV-103 au 30/12/2024",
+    "entity": "invoice",
+    "intent": "put",
+    "query_params": {
+      "numero": "INV-103",
+      "due_date": "2024-12-30"
+    },
+    "backend_response": {"success": true, "message": "Due date updated"},
+    "final_response": "La date d'échéance de INV-103 a été mise à jour au 30/12/2024."
+  },
+  {
+    "question": "Statut de la facture INV-104",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-104",
+      "fields": "status"
+    },
+    "backend_response": "posted",
+    "final_response": "La facture INV-104 a le statut 'posted'."
+  },
+  {
+    "question": "Marquer INV-105 comme payée",
+    "entity": "invoice",
+    "intent": "put",
+    "query_params": {
+      "numero": "INV-105",
+      "payment_status": "paid"
+    },
+    "backend_response": {"success": true, "message": "Payment status updated"},
+    "final_response": "La facture INV-105 a été marquée comme payée."
+  },
+  {
+    "question": "Produits jamais commandés",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "never_ordered",
+      "fields": "name,unitprice"
+    },
+    "backend_response": [
+      {"name": "Special Cable", "unitprice": 45.00},
+      {"name": "Adapter", "unitprice": 22.50}
+    ],
+    "final_response": "Produits jamais commandés : Special Cable (45.00€) et Adapter (22.50€)."
+  },
+  {
+    "question": "Commandes en retard de livraison",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "late_delivery",
+      "fields": "reference,vendor"
+    },
+    "backend_response": [
+      {"reference": "PO115", "vendor": "LateSupplier"},
+      {"reference": "PO116", "vendor": "SlowCorp"}
+    ],
+    "final_response": "Commandes en retard : PO115 (LateSupplier) et PO116 (SlowCorp)."
+  },
+  {
+    "question": "Mettre à jour le prix de 'USB Cable' à 12.00",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "name": "USB Cable",
+      "unitprice": 12.00
+    },
+    "backend_response": {"success": true, "message": "Product price updated"},
+    "final_response": "Le prix de 'USB Cable' a été mis à jour à 12.00€."
+  },
+  {
+    "question": "Fournisseurs avec plus de 10 commandes ce trimestre",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "filter": "order_count_gt_10",
+      "period": "current_quarter"
+    },
+    "backend_response": [
+      {"name": "MainSupplier", "order_count": 15},
+      {"name": "TechPartner", "order_count": 12}
+    ],
+    "final_response": "Fournisseurs avec >10 commandes : MainSupplier (15) et TechPartner (12)."
+  },
+  {
+    "question": "Erreur lors de la création d'une facture",
+    "entity": "invoice",
+    "intent": "post",
+    "query_params": {
+      "order_reference": "PO117"
+    },
+    "backend_response": 500,
+    "final_response": "Erreur serveur : Impossible de créer la facture. Veuillez réessayer."
+  },
+  {
+    "question": "Accès refusé à la commande PO118",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO118",
+      "fields": "all"
+    },
+    "backend_response": 403,
+    "final_response": "Erreur : Accès non autorisé à PO118. Vérifiez vos permissions."
+  },
+  {
+    "question": "Produits en rupture de stock",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "out_of_stock",
+      "fields": "name,unitprice"
+    },
+    "backend_response": [
+      {"name": "Power Supply", "unitprice": 89.99},
+      {"name": "Cooling Fan", "unitprice": 25.00}
+    ],
+    "final_response": "Produits en rupture : Power Supply (89.99€) et Cooling Fan (25.00€)."
+  },
+  {
+    "question": "Top 3 fournisseurs par volume",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "filter": "top_3_by_volume",
+      "fields": "name,total_amount"
+    },
+    "backend_response": [
+      {"name": "TopSupplier", "total_amount": 85000.00},
+      {"name": "PrimeVendor", "total_amount": 72000.00},
+      {"name": "EliteCorp", "total_amount": 68000.00}
+    ],
+    "final_response": "Top 3 fournisseurs : TopSupplier (85000€), PrimeVendor (72000€), EliteCorp (68000€)."
+  },
+  {
+    "question": "Commandes de l'acheteur Jean Martin",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "buyer": "Jean Martin",
+      "fields": "reference,vendor"
+    },
+    "backend_response": [
+      {"reference": "PO119", "vendor": "TechSource"},
+      {"reference": "PO120", "vendor": "OfficeSupply"}
+    ],
+    "final_response": "Commandes de Jean Martin : PO119 (TechSource) et PO120 (OfficeSupply)."
+  },
+  {
+    "question": "Produits les plus commandés ce trimestre",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "most_ordered_this_quarter",
+      "fields": "name,total_quantity"
+    },
+    "backend_response": [
+      {"name": "Standard Keyboard", "total_quantity": 120},
+      {"name": "Office Chair", "total_quantity": 85}
+    ],
+    "final_response": "Produits les plus commandés : Standard Keyboard (120 unités) et Office Chair (85 unités)."
+  },
+  {
+    "question": "Créer une demande de prix pour des écrans chez MonitorInc",
+    "entity": "rfq",
+    "intent": "post",
+    "query_params": {
+      "vendor": "MonitorInc",
+      "products": "Monitors",
+      "deadline": "2024-12-20"
+    },
+    "backend_response": {"rfq_reference": "RFQ-104", "status": "created"},
+    "final_response": "Demande de prix RFQ-104 créée pour Monitors chez MonitorInc (échéance 20/12)."
+  },
+  {
+    "question": "Envoyer la demande de prix RFQ-105",
+    "entity": "rfq",
+    "intent": "put",
+    "query_params": {
+      "reference": "RFQ-105",
+      "action": "send"
+    },
+    "backend_response": {"success": true, "sent_date": "2024-11-28"},
+    "final_response": "RFQ-105 envoyée le 28/11/2024."
+  },
+  {
+    "question": "Commandes en attente de confirmation",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "pending_confirmation",
+      "fields": "reference,vendor"
+    },
+    "backend_response": [
+      {"reference": "PO121", "vendor": "PendingCorp"},
+      {"reference": "PO122", "vendor": "WaitSupplier"}
+    ],
+    "final_response": "Commandes en attente : PO121 (PendingCorp) et PO122 (WaitSupplier)."
+  },
+  {
+    "question": "Historique des prix du produit 'SSD 1TB'",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "name": "SSD 1TB",
+      "fields": "price_history"
+    },
+    "backend_response": [
+      {"date": "2024-09-01", "price": 99.99},
+      {"date": "2024-10-01", "price": 89.99},
+      {"date": "2024-11-01", "price": 79.99}
+    ],
+    "final_response": "Historique prix SSD 1TB : septembre 99.99€, octobre 89.99€, novembre 79.99€."
+  },
+  {
+    "question": "Modifier la description du produit 'Headset' dans PO123",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "order_reference": "PO123",
+      "name": "Headset",
+      "description": "Casque audio avec micro intégré"
+    },
+    "backend_response": {"success": true, "message": "Description updated"},
+    "final_response": "Description de 'Headset' dans PO123 mise à jour."
+  },
+  {
+    "question": "Commandes expédiées non reçues",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "shipped_not_received",
+      "fields": "reference,vendor"
+    },
+    "backend_response": [
+      {"reference": "PO124", "vendor": "ShipCorp"},
+      {"reference": "PO125", "vendor": "TransitInc"}
+    ],
+    "final_response": "Commandes expédiées non reçues : PO124 (ShipCorp) et PO125 (TransitInc)."
+  },
+  {
+    "question": "Factures > 10000€ ce mois",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "filter": "amount_gt_10000",
+      "period": "current_month",
+      "fields": "numero,tax_excluded_total"
+    },
+    "backend_response": [
+      {"numero": "INV-106", "tax_excluded_total": 12500.00},
+      {"numero": "INV-107", "tax_excluded_total": 15000.00}
+    ],
+    "final_response": "Factures >10000€ : INV-106 (12500€) et INV-107 (15000€)."
+  },
+  {
+    "question": "Appliquer remise de 10% sur PO126",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO126",
+      "action": "apply_discount",
+      "discount": 10.0
+    },
+    "backend_response": {"success": true, "total_discount": 320.50},
+    "final_response": "Remise de 10% appliquée sur PO126 (total remise : 320.50€)."
+  },
+  {
+    "question": "Fournisseurs inactifs depuis 1 an",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "filter": "no_orders_1_year",
+      "fields": "name,last_order_date"
+    },
+    "backend_response": [
+      {"name": "OldSupplier", "last_order_date": "2023-11-15"},
+      {"name": "FormerPartner", "last_order_date": "2023-10-20"}
+    ],
+    "final_response": "Fournisseurs inactifs : OldSupplier (dernière commande 15/11/2023) et FormerPartner (20/10/2023)."
+  },
+  {
+    "question": "Confirmer réception partielle de PO127",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO127",
+      "action": "partial_receipt",
+      "products": [
+        {"name": "Desk", "received_quantity": 5},
+        {"name": "Chair", "received_quantity": 8}
+      ]
+    },
+    "backend_response": {"success": true, "message": "Partial receipt confirmed"},
+    "final_response": "Réception partielle PO127 : Desk (5 unités) et Chair (8 unités)."
+  },
+  {
+    "question": "Budget restant pour Sophie Lambert",
+    "entity": "buyer",
+    "intent": "get",
+    "query_params": {
+      "name": "Sophie Lambert",
+      "metric": "remaining_budget"
+    },
+    "backend_response": 8500.00,
+    "final_response": "Budget restant pour Sophie Lambert : 8500.00€."
+  },
+  {
+    "question": "Dupliquer PO128 avec nouveau fournisseur NewVendor",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "action": "duplicate",
+      "source_reference": "PO128",
+      "new_vendor": "NewVendor"
+    },
+    "backend_response": {"new_order_reference": "PO129", "status": "created"},
+    "final_response": "PO128 dupliquée en PO129 avec fournisseur NewVendor."
+  },
+  {
+    "question": "Exporter les commandes de décembre en CSV",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "date_range": "2024-12-01,2024-12-31",
+      "export_format": "csv"
+    },
+    "backend_response": {"export_url": "/exports/orders_dec_2024.csv", "record_count": 95},
+    "final_response": "Export CSV des 95 commandes de décembre disponible à /exports/orders_dec_2024.csv."
+  },
+  {
+    "question": "Alertes stock critique",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "critical_stock_alert",
+      "fields": "name,current_stock"
+    },
+    "backend_response": [
+      {"name": "Battery", "current_stock": 2},
+      {"name": "Cable", "current_stock": 3}
+    ],
+    "final_response": "Alertes stock : Battery (2 unités) et Cable (3 unités)."
+  },
+  {
+    "question": "Planifier livraison PO130 pour le 15/01/2025",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO130",
+      "action": "schedule_delivery",
+      "delivery_date": "2025-01-15"
+    },
+    "backend_response": {"success": true, "delivery_scheduled": true},
+    "final_response": "Livraison PO130 planifiée pour le 15/01/2025."
+  },
+  {
+    "question": "Commandes nécessitant approbation",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "pending_budget_approval",
+      "fields": "reference,total"
+    },
+    "backend_response": [
+      {"reference": "PO131", "total": 18000.00},
+      {"reference": "PO132", "total": 25000.00}
+    ],
+    "final_response": "Commandes en attente d'approbation : PO131 (18000€) et PO132 (25000€)."
+  },
+  {
+    "question": "Générer rapport performance Q1 2025",
+    "entity": "report",
+    "intent": "post",
+    "query_params": {
+      "type": "vendor_performance",
+      "period": "Q1_2025"
+    },
+    "backend_response": {"report_id": "RPT-2025-Q1-001", "status": "generating"},
+    "final_response": "Rapport performance Q1 2025 en cours (ID: RPT-2025-Q1-001)."
+  },
+  {
+    "question": "Archiver commandes annulées 2024",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "filter": "cancelled_2024",
+      "action": "archive"
+    },
+    "backend_response": {"success": true, "archived_count": 32},
+    "final_response": "32 commandes 2024 annulées archivées."
+  },
+  {
+    "question": "Conformité produits PO133",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO133",
+      "fields": "compliance_status"
+    },
+    "backend_response": [
+      {"name": "Medical Device", "compliance_status": "validated"},
+      {"name": "Component", "compliance_status": "pending"}
+    ],
+    "final_response": "Conformité PO133 : Medical Device (validé), Component (en attente)."
+  },
+  {
+    "question": "Toutes les commandes urgentes",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "priority": "urgent",
+      "fields": "reference,vendor"
+    },
+    "backend_response": [
+      {"reference": "PO134", "vendor": "FastTech"},
+      {"reference": "PO135", "vendor": "QuickSupply"}
+    ],
+    "final_response": "Commandes urgentes : PO134 (FastTech) et PO135 (QuickSupply)."
+  },
+  {
+    "question": "Modifier fournisseur PO136 à BestSupplier",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO136",
+      "vendor": "BestSupplier"
+    },
+    "backend_response": {"success": true, "message": "Vendor updated"},
+    "final_response": "Fournisseur PO136 changé pour BestSupplier."
+  },
+  {
+    "question": "Créer facture pour PO137",
+    "entity": "invoice",
+    "intent": "post",
+    "query_params": {
+      "order_reference": "PO137"
+    },
+    "backend_response": {"invoice_number": "INV-108", "status": "created"},
+    "final_response": "Facture INV-108 créée pour PO137."
+  },
+  {
+    "question": "Factures 'posted' ce mois",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "status": "posted",
+      "period": "current_month"
+    },
+    "backend_response": [
+      {"numero": "INV-109", "customer": "Client X"},
+      {"numero": "INV-110", "customer": "Client Y"}
+    ],
+    "final_response": "Factures 'posted' ce mois : INV-109 (Client X) et INV-110 (Client Y)."
+  },
+  {
+    "question": "Activités facture INV-111",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-111",
+      "fields": "activities"
+    },
+    "backend_response": [
+      {"type": "email", "date": "2024-11-25", "description": "Envoi facture"}
+    ],
+    "final_response": "Activité INV-111 : Email le 25/11 (Envoi facture)."
+  },
+  {
+    "question": "Montant TTC PO138",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO138",
+      "fields": "total"
+    },
+    "backend_response": 4200.00,
+    "final_response": "Montant TTC PO138 : 4200.00€."
+  },
+  {
+    "question": "Produits avec taxes exclues PO139",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO139",
+      "fields": "taxes_excl"
+    },
+    "backend_response": [
+      {"name": "Export Item", "taxes_excl": true}
+    ],
+    "final_response": "Produit PO139 avec taxes exclues : Export Item."
+  },
+  {
+    "question": "Commandes position fiscale 'Export'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "fiscal_position": "Export",
+      "fields": "reference,vendor"
+    },
+    "backend_response": [
+      {"reference": "PO140", "vendor": "International"},
+      {"reference": "PO141", "vendor": "Global"}
+    ],
+    "final_response": "Commandes 'Export' : PO140 (International) et PO141 (Global)."
+  },
+  {
+    "question": "Modifier conditions paiement PO142 à '30 jours'",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO142",
+      "payment_terms": "30 jours"
+    },
+    "backend_response": {"success": true, "message": "Payment terms updated"},
+    "final_response": "Conditions paiement PO142 mises à jour à '30 jours'."
+  },
+  {
+    "question": "Supprimer facture INV-112",
+    "entity": "invoice",
+    "intent": "delete",
+    "query_params": {
+      "numero": "INV-112"
+    },
+    "backend_response": {"success": true, "message": "Invoice deleted"},
+    "final_response": "Facture INV-112 supprimée."
+  },
+  {
+    "question": "Commandes confirmées hier",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "confirmed_yesterday",
+      "fields": "reference,vendor"
+    },
+    "backend_response": [
+      {"reference": "PO143", "vendor": "DailySupply"},
+      {"reference": "PO144", "vendor": "QuickOrder"}
+    ],
+    "final_response": "Commandes confirmées hier : PO143 (DailySupply) et PO144 (QuickOrder)."
+  },
+  {
+    "question": "Quelle est la position fiscale de la commande PO103 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO103",
+      "fields": "fiscal_position"
+    },
+    "backend_response": "Export",
+    "final_response": "La position fiscale de la commande PO103 est 'Export'."
+  },
+  {
+    "question": "Modifier la priorité de PO104 à haute",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO104",
+      "priority": "high"
+    },
+    "backend_response": {"success": true, "message": "Priority updated"},
+    "final_response": "La priorité de la commande PO104 a été mise à jour à 'high'."
+  },
+  {
+    "question": "Créer une nouvelle commande pour le fournisseur GlobalTech avec les produits Laptop et Mouse",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "vendor": "GlobalTech",
+      "products": ["Laptop", "Mouse"]
+    },
+    "backend_response": {"id": "PO105", "status": "created", "vendor": "GlobalTech"},
+    "final_response": "Une nouvelle commande PO105 a été créée pour le fournisseur GlobalTech avec les produits Laptop et Mouse."
+  },
+  {
+    "question": "Supprimer la commande PO106",
+    "entity": "order",
+    "intent": "delete",
+    "query_params": {
+      "reference": "PO106"
+    },
+    "backend_response": {"success": true, "message": "Order deleted"},
+    "final_response": "La commande PO106 a été supprimée avec succès."
+  },
+  {
+    "question": "Quel est le montant total de la commande PO107 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO107",
+      "fields": "total"
+    },
+    "backend_response": 2750.50,
+    "final_response": "Le montant total de la commande PO107 est 2750.50€."
+  },
+  {
+    "question": "Quelles sont les activités de la commande PO108 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO108",
+      "fields": "activities"
+    },
+    "backend_response": [
+      {"type": "email", "date": "2024-11-10", "description": "Confirmation de commande"},
+      {"type": "call", "date": "2024-11-12", "description": "Suivi livraison"}
+    ],
+    "final_response": "Les activités de la commande PO108 sont : Email envoyé le 10/11 (Confirmation de commande) et Appel le 12/11 (Suivi livraison)."
+  },
+  {
+    "question": "Quel est le statut de la commande PO800 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO800",
+      "fields": "status"
+    },
+    "backend_response": 404,
+    "final_response": "Erreur : La commande PO800 n'existe pas dans le système."
+  },
+  {
+    "question": "Qui est l'acheteur de la commande PO109 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO109",
+      "fields": "buyer"
+    },
+    "backend_response": "Sophie Martin",
+    "final_response": "L'acheteur de la commande PO109 est Sophie Martin."
+  },
+  {
+    "question": "Quel est le document source de PO110 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO110",
+      "fields": "source_document"
+    },
+    "backend_response": "RFQ-2024-100",
+    "final_response": "Le document source de la commande PO110 est RFQ-2024-100."
+  },
+  {
+    "question": "Afficher les produits de la commande PO111",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO111",
+      "fields": "products"
+    },
+    "backend_response": [
+      {"name": "Keyboard", "quantity": 10, "unitprice": 45.00},
+      {"name": "Monitor", "quantity": 3, "unitprice": 299.99}
+    ],
+    "final_response": "Les produits de la commande PO111 sont : Keyboard (10 unités à 45.00€) et Monitor (3 unités à 299.99€)."
+  },
+  {
+    "question": "Modifier la quantité du produit Mouse dans PO112 à 25 unités",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "order_reference": "PO112",
+      "name": "Mouse",
+      "quantity": 25
+    },
+    "backend_response": {"success": true, "message": "Product quantity updated"},
+    "final_response": "La quantité du produit Mouse dans la commande PO112 a été mise à jour à 25 unités."
+  },
+  {
+    "question": "Quel est le statut de facturation de PO113 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO113",
+      "fields": "billing_status"
+    },
+    "backend_response": "waiting to bill",
+    "final_response": "Le statut de facturation de la commande PO113 est 'waiting to bill'."
+  },
+  {
+    "question": "Afficher les commandes avec statut 'nothing to bill'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "billing_status": "nothing to bill",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO114", "vendor": "CompleteTech", "total": 1200.00},
+      {"reference": "PO115", "vendor": "FinalSupply", "total": 850.00}
+    ],
+    "final_response": "Les commandes avec statut 'nothing to bill' sont : PO114 (CompleteTech, 1200.00€) et PO115 (FinalSupply, 850.00€)."
+  },
+  {
+    "question": "Quelle est la date d'arrivée prévue pour PO116 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO116",
+      "fields": "expected_arrival"
+    },
+    "backend_response": "2024-12-20",
+    "final_response": "La date d'arrivée prévue pour la commande PO116 est le 20 décembre 2024."
+  },
+  {
+    "question": "Changer la date d'échéance de PO117 au 15 janvier 2025",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO117",
+      "deadline": "2025-01-15"
+    },
+    "backend_response": {"success": true, "message": "Deadline updated"},
+    "final_response": "La date d'échéance de la commande PO117 a été modifiée au 15 janvier 2025."
+  },
+  {
+    "question": "Quel est le montant hors taxes de PO118 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO118",
+      "fields": "untaxed"
+    },
+    "backend_response": 2100.00,
+    "final_response": "Le montant hors taxes de la commande PO118 est 2100.00€."
+  },
+  {
+    "question": "Afficher les commandes confirmées cette semaine",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "confirmed_this_week",
+      "fields": "reference,vendor,confirmation_date,total"
+    },
+    "backend_response": [
+      {"reference": "PO119", "vendor": "QuickDeliver", "confirmation_date": "2024-11-27", "total": 1800.00},
+      {"reference": "PO120", "vendor": "FastTech", "confirmation_date": "2024-11-28", "total": 3200.00}
+    ],
+    "final_response": "Les commandes confirmées cette semaine sont : PO119 (QuickDeliver, confirmée le 27/11, 1800.00€) et PO120 (FastTech, confirmée le 28/11, 3200.00€)."
+  },
+  {
+    "question": "Quel est le numéro de facture pour la commande PO121 ?",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO121",
+      "fields": "numero"
+    },
+    "backend_response": "INV-100",
+    "final_response": "Le numéro de facture pour la commande PO121 est INV-100."
+  },
+  {
+    "question": "Afficher le statut de la facture INV-101",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-101",
+      "fields": "status"
+    },
+    "backend_response": "posted",
+    "final_response": "Le statut de la facture INV-101 est 'posted'."
+  },
+  {
+    "question": "Quelle est la date d'échéance de la facture INV-102 ?",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-102",
+      "fields": "due_date"
+    },
+    "backend_response": "2024-12-31",
+    "final_response": "La date d'échéance de la facture INV-102 est le 31 décembre 2024."
+  },
+  {
+    "question": "Marquer la facture INV-103 comme payée",
+    "entity": "invoice",
+    "intent": "put",
+    "query_params": {
+      "numero": "INV-103",
+      "payment_status": "paid"
+    },
+    "backend_response": {"success": true, "message": "Payment status updated"},
+    "final_response": "La facture INV-103 a été marquée comme payée."
+  },
+  {
+    "question": "Supprimer la facture INV-104",
+    "entity": "invoice",
+    "intent": "delete",
+    "query_params": {
+      "numero": "INV-104"
+    },
+    "backend_response": {"success": true, "message": "Invoice deleted"},
+    "final_response": "La facture INV-104 a été supprimée avec succès."
+  },
+  {
+    "question": "Quel est le montant total hors taxes de la facture INV-105 ?",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-105",
+      "fields": "tax_excluded_total"
+    },
+    "backend_response": 1850.00,
+    "final_response": "Le montant total hors taxes de la facture INV-105 est 1850.00€."
+  },
+  {
+    "question": "Afficher les factures avec statut 'draft'",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "status": "draft",
+      "fields": "numero,customer,tax_excluded_total"
+    },
+    "backend_response": [
+      {"numero": "INV-106", "customer": "ClientA", "tax_excluded_total": 1200.00},
+      {"numero": "INV-107", "customer": "ClientB", "tax_excluded_total": 850.00}
+    ],
+    "final_response": "Les factures avec statut 'draft' sont : INV-106 (ClientA, 1200.00€) et INV-107 (ClientB, 850.00€)."
+  },
+  {
+    "question": "Quelles sont les activités de la facture INV-108 ?",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-108",
+      "fields": "activities"
+    },
+    "backend_response": [
+      {"type": "email", "date": "2024-11-20", "description": "Envoi facture"},
+      {"type": "call", "date": "2024-11-25", "description": "Relance paiement"}
+    ],
+    "final_response": "Les activités de la facture INV-108 sont : Email envoyé le 20/11 (Envoi facture) et Appel le 25/11 (Relance paiement)."
+  },
+  {
+    "question": "Créer une facture pour la commande PO122",
+    "entity": "invoice",
+    "intent": "post",
+    "query_params": {
+      "order_reference": "PO122"
+    },
+    "backend_response": {"invoice_number": "INV-109", "status": "created"},
+    "final_response": "La facture INV-109 a été créée pour la commande PO122."
+  },
+  {
+    "question": "Modifier la date d'échéance de la facture INV-110 au 15 janvier 2025",
+    "entity": "invoice",
+    "intent": "put",
+    "query_params": {
+      "numero": "INV-110",
+      "due_date": "2025-01-15"
+    },
+    "backend_response": {"success": true, "message": "Due date updated"},
+    "final_response": "La date d'échéance de la facture INV-110 a été modifiée au 15 janvier 2025."
+  },
+  {
+    "question": "Afficher les factures impayées avec date dépassée",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "payment_status": "not paid",
+      "filter": "overdue",
+      "fields": "numero,customer,due_date,tax_excluded_total"
+    },
+    "backend_response": [
+      {"numero": "INV-111", "customer": "ClientC", "due_date": "2024-11-10", "tax_excluded_total": 1500.00},
+      {"numero": "INV-112", "customer": "ClientD", "due_date": "2024-11-05", "tax_excluded_total": 950.00}
+    ],
+    "final_response": "Les factures impayées en retard sont : INV-111 (ClientC, échue le 10/11, 1500.00€) et INV-112 (ClientD, échue le 05/11, 950.00€)."
+  },
+  {
+    "question": "Quel est le numéro client de la facture INV-113 ?",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-113",
+      "fields": "customer"
+    },
+    "backend_response": "CLIENT-2024-100",
+    "final_response": "Le numéro client de la facture INV-113 est CLIENT-2024-100."
+  },
+  {
+    "question": "Afficher les factures avec montant supérieur à 5000€",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "filter": "amount_gt_5000",
+      "fields": "numero,customer,tax_excluded_total,status"
+    },
+    "backend_response": [
+      {"numero": "INV-114", "customer": "BigClient", "tax_excluded_total": 7500.00, "status": "posted"},
+      {"numero": "INV-115", "customer": "MajorCorp", "tax_excluded_total": 9200.00, "status": "draft"}
+    ],
+    "final_response": "Les factures avec montant > 5000€ sont : INV-114 (BigClient, 7500.00€, posted) et INV-115 (MajorCorp, 9200.00€, draft)."
+  },
+  {
+    "question": "Quel est le statut de la facture INV-999 ?",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-999",
+      "fields": "status"
+    },
+    "backend_response": 404,
+    "final_response": "Erreur : La facture INV-999 n'existe pas dans le système."
+  },
+  {
+    "question": "Afficher les produits avec remise supérieure à 10% dans PO123",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO123",
+      "filter": "discount_gt_10",
+      "fields": "name,discount,unitprice"
+    },
+    "backend_response": [
+      {"name": "Bulk Item B", "discount": 15.0, "unitprice": 250.00},
+      {"name": "Clearance Item", "discount": 25.0, "unitprice": 90.00}
+    ],
+    "final_response": "Les produits avec remise > 10% dans PO123 sont : Bulk Item B (15% de remise, 250.00€) et Clearance Item (25% de remise, 90.00€)."
+  },
+  {
+    "question": "Quelle est la quantité reçue du produit 'Keyboard' dans PO124 ?",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO124",
+      "name": "Keyboard",
+      "fields": "received"
+    },
+    "backend_response": 8,
+    "final_response": "La quantité reçue du produit 'Keyboard' dans la commande PO124 est 8 unités."
+  },
+  {
+    "question": "Modifier la description du produit 'Monitor' dans PO125",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "order_reference": "PO125",
+      "name": "Monitor",
+      "description": "Écran 24 pouces Full HD avec réduction de lumière bleue"
+    },
+    "backend_response": {"success": true, "message": "Product description updated"},
+    "final_response": "La description du produit 'Monitor' dans la commande PO125 a été mise à jour."
+  },
+  {
+    "question": "Ajouter le produit 'New Mouse' à la commande PO126 avec quantité 5",
+    "entity": "product",
+    "intent": "post",
+    "query_params": {
+      "order_reference": "PO126",
+      "name": "New Mouse",
+      "quantity": 5,
+      "unitprice": 35.00
+    },
+    "backend_response": {"success": true, "message": "Product added to order"},
+    "final_response": "Le produit 'New Mouse' a été ajouté à la commande PO126 avec une quantité de 5 unités à 35.00€."
+  },
+  {
+    "question": "Supprimer le produit 'Old Keyboard' de la commande PO127",
+    "entity": "product",
+    "intent": "delete",
+    "query_params": {
+      "order_reference": "PO127",
+      "name": "Old Keyboard"
+    },
+    "backend_response": {"success": true, "message": "Product removed from order"},
+    "final_response": "Le produit 'Old Keyboard' a été supprimé de la commande PO127."
+  },
+  {
+    "question": "Quel est le montant facturé pour le produit 'Laptop' dans PO128 ?",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO128",
+      "name": "Laptop",
+      "fields": "billed"
+    },
+    "backend_response": 899.99,
+    "final_response": "Le montant facturé pour le produit 'Laptop' dans la commande PO128 est 899.99€."
+  },
+  {
+    "question": "Afficher les produits avec taxes incluses dans PO129",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO129",
+      "fields": "name,taxes_incl"
+    },
+    "backend_response": [
+      {"name": "Laptop Pro", "taxes_incl": true},
+      {"name": "External SSD", "taxes_incl": false}
+    ],
+    "final_response": "Dans la commande PO129 : Laptop Pro (taxes incluses) et External SSD (taxes exclues)."
+  },
+  {
+    "question": "Quelle est la remise appliquée sur le produit 'Desk' dans PO130 ?",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO130",
+      "name": "Desk",
+      "fields": "discount"
+    },
+    "backend_response": 10.0,
+    "final_response": "La remise appliquée sur le produit 'Desk' dans la commande PO130 est de 10.0%."
+  },
+  {
+    "question": "Modifier le prix unitaire du produit 'USB Cable' à 12.50",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "name": "USB Cable",
+      "unitprice": 12.50
+    },
+    "backend_response": {"success": true, "message": "Product price updated"},
+    "final_response": "Le prix unitaire du produit 'USB Cable' a été modifié à 12.50€."
+  },
+  {
+    "question": "Créer une nouvelle commande pour OfficeSupply avec 10 chaises et 5 bureaux",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "vendor": "OfficeSupply",
+      "products": ["Chair", "Desk"],
+      "quantities": [10, 5]
+    },
+    "backend_response": {"id": "PO103", "status": "created", "vendor": "OfficeSupply"},
+    "final_response": "Une nouvelle commande PO103 a été créée pour le fournisseur OfficeSupply avec les produits Chair (10 unités) et Desk (5 unités)."
+  },
+  {
+    "question": "Quelle est la date de confirmation de PO104 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO104",
+      "fields": "confirmation_date"
+    },
+    "backend_response": "2024-11-28",
+    "final_response": "La date de confirmation de la commande PO104 est le 28 novembre 2024."
+  },
+  {
+    "question": "Modifier le statut de PO105 à 'cancelled'",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO105",
+      "status": "cancelled"
+    },
+    "backend_response": {"success": true, "message": "Order status updated"},
+    "final_response": "Le statut de la commande PO105 a été modifié avec succès en 'cancelled'."
+  },
+  {
+    "question": "Supprimer la commande PO106",
+    "entity": "order",
+    "intent": "delete",
+    "query_params": {
+      "reference": "PO106"
+    },
+    "backend_response": {"success": true, "message": "Order deleted"},
+    "final_response": "La commande PO106 a été supprimée avec succès."
+  },
+  {
+    "question": "Montant total TTC de la commande PO107",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO107",
+      "fields": "total"
+    },
+    "backend_response": 2890.50,
+    "final_response": "Le montant total TTC de la commande PO107 est 2890.50€."
+  },
+  {
+    "question": "Produits de la commande PO108 avec leurs quantités",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO108",
+      "fields": "products"
+    },
+    "backend_response": [
+      {"name": "Keyboard", "quantity": 8, "unitprice": 45.00},
+      {"name": "Mouse", "quantity": 10, "unitprice": 25.00}
+    ],
+    "final_response": "Les produits de la commande PO108 sont : Keyboard (8 unités à 45.00€) et Mouse (10 unités à 25.00€)."
+  },
+  {
+    "question": "Statut de facturation de PO109",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO109",
+      "fields": "billing_status"
+    },
+    "backend_response": "waiting to bill",
+    "final_response": "Le statut de facturation de la commande PO109 est 'waiting to bill'."
+  },
+  {
+    "question": "Commandes confirmées cette semaine pour l'acheteur Jean Dupont",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "buyer": "Jean Dupont",
+      "filter": "confirmed_this_week",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO110", "vendor": "FastTech", "total": 1800.00},
+      {"reference": "PO111", "vendor": "QuickSupply", "total": 2300.00}
+    ],
+    "final_response": "Les commandes confirmées cette semaine pour Jean Dupont sont : PO110 (FastTech, 1800.00€) et PO111 (QuickSupply, 2300.00€)."
+  },
+  {
+    "question": "Quel est le fournisseur de la commande PO112 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO112",
+      "fields": "vendor"
+    },
+    "backend_response": "GlobalElectronics",
+    "final_response": "Le fournisseur de la commande PO112 est GlobalElectronics."
+  },
+  {
+    "question": "Changer la date d'échéance de PO113 au 15 janvier 2025",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO113",
+      "deadline": "2025-01-15"
+    },
+    "backend_response": {"success": true, "message": "Deadline updated"},
+    "final_response": "La date d'échéance de la commande PO113 a été modifiée au 15 janvier 2025."
+  },
+  {
+    "question": "Créer une facture pour la commande PO114",
+    "entity": "invoice",
+    "intent": "post",
+    "query_params": {
+      "order_reference": "PO114"
+    },
+    "backend_response": {"invoice_number": "INV-019", "status": "created"},
+    "final_response": "La facture INV-019 a été créée pour la commande PO114."
+  },
+  {
+    "question": "Statut de la facture INV-020",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-020",
+      "fields": "status"
+    },
+    "backend_response": "posted",
+    "final_response": "Le statut de la facture INV-020 est 'posted'."
+  },
+  {
+    "question": "Modifier le statut de la facture INV-021 en 'paid'",
+    "entity": "invoice",
+    "intent": "put",
+    "query_params": {
+      "numero": "INV-021",
+      "payment_status": "paid"
+    },
+    "backend_response": {"success": true, "message": "Payment status updated"},
+    "final_response": "Le statut de paiement de la facture INV-021 a été mis à jour à 'paid'."
+  },
+  {
+    "question": "Supprimer la facture INV-022",
+    "entity": "invoice",
+    "intent": "delete",
+    "query_params": {
+      "numero": "INV-022"
+    },
+    "backend_response": {"success": true, "message": "Invoice deleted"},
+    "final_response": "La facture INV-022 a été supprimée avec succès."
+  },
+  {
+    "question": "Date d'échéance de la facture INV-023",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-023",
+      "fields": "due_date"
+    },
+    "backend_response": "2024-12-31",
+    "final_response": "La date d'échéance de la facture INV-023 est le 31 décembre 2024."
+  },
+  {
+    "question": "Factures impayées avec montant supérieur à 1000€",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "payment_status": "not paid",
+      "filter": "amount_gt_1000",
+      "fields": "numero,customer,total"
+    },
+    "backend_response": [
+      {"numero": "INV-024", "customer": "BigClient", "total": 1500.00},
+      {"numero": "INV-025", "customer": "Corporate", "total": 2300.00}
+    ],
+    "final_response": "Les factures impayées avec montant > 1000€ sont : INV-024 (BigClient, 1500.00€) et INV-025 (Corporate, 2300.00€)."
+  },
+  {
+    "question": "Créer une demande de prix pour des écrans chez MonitorPro",
+    "entity": "rfq",
+    "intent": "post",
+    "query_params": {
+      "vendor": "MonitorPro",
+      "products": "Monitors",
+      "deadline": "2024-12-10"
+    },
+    "backend_response": {"rfq_reference": "RFQ-2024-012", "status": "created"},
+    "final_response": "La demande de prix RFQ-2024-012 a été créée pour 'Monitors' chez MonitorPro avec échéance au 10 décembre 2024."
+  },
+  {
+    "question": "Envoyer la demande de prix RFQ-2024-013",
+    "entity": "rfq",
+    "intent": "put",
+    "query_params": {
+      "reference": "RFQ-2024-013",
+      "action": "send"
+    },
+    "backend_response": {"success": true, "sent_date": "2024-11-29"},
+    "final_response": "La demande de prix RFQ-2024-013 a été envoyée avec succès le 29 novembre 2024."
+  },
+  {
+    "question": "Mes demandes de prix en attente",
+    "entity": "rfq",
+    "intent": "get",
+    "query_params": {
+      "status": "waiting",
+      "scope": "my"
+    },
+    "backend_response": [
+      {"reference": "RFQ-2024-014", "vendor": "TechSupplier", "sent_date": "2024-11-20"},
+      {"reference": "RFQ-2024-015", "vendor": "OfficePlus", "sent_date": "2024-11-22"}
+    ],
+    "final_response": "Vos demandes de prix en attente sont : RFQ-2024-014 (TechSupplier, envoyée le 20/11) et RFQ-2024-015 (OfficePlus, envoyée le 22/11)."
+  },
+  {
+    "question": "Toutes les demandes de prix à envoyer",
+    "entity": "rfq",
+    "intent": "get",
+    "query_params": {
+      "status": "to_send",
+      "scope": "all"
+    },
+    "backend_response": [
+      {"reference": "RFQ-2024-016", "vendor": "GlobalTech", "products": ["Laptops", "Tablets"]},
+      {"reference": "RFQ-2024-017", "vendor": "FurnitureCo", "products": ["Chairs", "Desks"]}
+    ],
+    "final_response": "Les demandes de prix à envoyer sont : RFQ-2024-016 (GlobalTech - Laptops, Tablets) et RFQ-2024-017 (FurnitureCo - Chairs, Desks)."
+  },
+  {
+    "question": "Demandes de prix en retard dans mon portefeuille",
+    "entity": "rfq",
+    "intent": "get",
+    "query_params": {
+      "status": "late",
+      "scope": "my"
+    },
+    "backend_response": [
+      {"reference": "RFQ-2024-018", "vendor": "SlowSupplier", "due_date": "2024-11-15"}
+    ],
+    "final_response": "Votre demande de prix en retard est : RFQ-2024-018 (SlowSupplier, échéance 15/11)."
+  },
+  {
+    "question": "Ajouter une activité de type email à la commande PO115",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "reference": "PO115",
+      "activity_type": "email",
+      "description": "Confirmation de livraison"
+    },
+    "backend_response": {"success": true, "activity_id": "ACT-003"},
+    "final_response": "Une activité email 'Confirmation de livraison' a été ajoutée à la commande PO115 (ID: ACT-003)."
+  },
+  {
+    "question": "Activités de la commande PO116",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO116",
+      "fields": "activities"
+    },
+    "backend_response": [
+      {"type": "call", "date": "2024-11-20", "description": "Confirmation commande"},
+      {"type": "email", "date": "2024-11-22", "description": "Envoi bon de commande"}
+    ],
+    "final_response": "Les activités de la commande PO116 sont : Appel le 20/11 (Confirmation commande) et Email le 22/11 (Envoi bon de commande)."
+  },
+  {
+    "question": "Modifier la quantité du produit 'Laptop' dans PO117 à 15 unités",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "order_reference": "PO117",
+      "name": "Laptop",
+      "quantity": 15
+    },
+    "backend_response": {"success": true, "message": "Product quantity updated"},
+    "final_response": "La quantité du produit 'Laptop' dans la commande PO117 a été mise à jour à 15 unités."
+  },
+  {
+    "question": "Ajouter le produit 'Scanner' à la commande PO118 avec quantité 2",
+    "entity": "product",
+    "intent": "post",
+    "query_params": {
+      "order_reference": "PO118",
+      "name": "Scanner",
+      "quantity": 2,
+      "unitprice": 299.99
+    },
+    "backend_response": {"success": true, "message": "Product added to order"},
+    "final_response": "Le produit 'Scanner' a été ajouté à la commande PO118 avec une quantité de 2 unités à 299.99€."
+  },
+  {
+    "question": "Supprimer le produit 'Old Keyboard' de la commande PO119",
+    "entity": "product",
+    "intent": "delete",
+    "query_params": {
+      "order_reference": "PO119",
+      "name": "Old Keyboard"
+    },
+    "backend_response": {"success": true, "message": "Product removed from order"},
+    "final_response": "Le produit 'Old Keyboard' a été supprimé de la commande PO119."
+  },
+  {
+    "question": "Produits avec remise dans la commande PO120",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO120",
+      "fields": "name,discount,unitprice"
+    },
+    "backend_response": [
+      {"name": "Bulk Cable", "discount": 10.0, "unitprice": 15.00},
+      {"name": "Clearance Mouse", "discount": 20.0, "unitprice": 20.00}
+    ],
+    "final_response": "Les produits avec remise dans PO120 sont : Bulk Cable (10% de remise, 15.00€) et Clearance Mouse (20% de remise, 20.00€)."
+  },
+  {
+    "question": "Changer le fournisseur de PO121 à NewTech Solutions",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO121",
+      "vendor": "NewTech Solutions"
+    },
+    "backend_response": {"success": true, "message": "Vendor updated"},
+    "final_response": "Le fournisseur de la commande PO121 a été changé pour NewTech Solutions."
+  },
+  {
+    "question": "Conditions de paiement de PO122",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO122",
+      "fields": "payment_terms"
+    },
+    "backend_response": "30 jours net",
+    "final_response": "Les conditions de paiement de la commande PO122 sont : 30 jours net."
+  },
+  {
+    "question": "Modifier les conditions de paiement de PO123 à '15 jours'",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO123",
+      "payment_terms": "15 jours"
+    },
+    "backend_response": {"success": true, "message": "Payment terms updated"},
+    "final_response": "Les conditions de paiement de la commande PO123 ont été modifiées à '15 jours'."
+  },
+  {
+    "question": "Position fiscale de PO124",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO124",
+      "fields": "fiscal_position"
+    },
+    "backend_response": "Export",
+    "final_response": "La position fiscale de la commande PO124 est 'Export'."
+  },
+  {
+    "question": "Document source de PO125",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO125",
+      "fields": "source_document"
+    },
+    "backend_response": "RFQ-2024-019",
+    "final_response": "Le document source de la commande PO125 est RFQ-2024-019."
+  },
+  {
+    "question": "Référence fournisseur de PO126",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO126",
+      "fields": "vendor_reference"
+    },
+    "backend_response": "SUP-REF-2024-126",
+    "final_response": "La référence fournisseur de la commande PO126 est SUP-REF-2024-126."
+  },
+  {
+    "question": "Date d'arrivée prévue pour PO127",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO127",
+      "fields": "expected_arrival"
+    },
+    "backend_response": "2024-12-15",
+    "final_response": "La date d'arrivée prévue pour la commande PO127 est le 15 décembre 2024."
+  },
+  {
+    "question": "Changer la date d'arrivée prévue de PO128 au 20 décembre",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO128",
+      "expected_arrival": "2024-12-20"
+    },
+    "backend_response": {"success": true, "message": "Expected arrival date updated"},
+    "final_response": "La date d'arrivée prévue de la commande PO128 a été mise à jour au 20 décembre 2024."
+  },
+  {
+    "question": "Commandes avec statut 'nothing to bill'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "billing_status": "nothing to bill",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO129", "vendor": "CompleteTech", "total": 1500.00},
+      {"reference": "PO130", "vendor": "FinishedGoods", "total": 2300.00}
+    ],
+    "final_response": "Les commandes avec statut 'nothing to bill' sont : PO129 (CompleteTech, 1500.00€) et PO130 (FinishedGoods, 2300.00€)."
+  },
+  {
+    "question": "Commandes expédiées mais non reçues",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "shipped_not_received",
+      "fields": "reference,vendor,expected_arrival"
+    },
+    "backend_response": [
+      {"reference": "PO131", "vendor": "ShippedFast", "expected_arrival": "2024-11-25"},
+      {"reference": "PO132", "vendor": "GlobalLogistics", "expected_arrival": "2024-11-28"}
+    ],
+    "final_response": "Les commandes expédiées mais non reçues sont : PO131 (ShippedFast, arrivée prévue 25/11) et PO132 (GlobalLogistics, arrivée prévue 28/11)."
+  },
+  {
+    "question": "Commandes en retard de livraison",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "late_delivery",
+      "fields": "reference,vendor,expected_arrival"
+    },
+    "backend_response": [
+      {"reference": "PO133", "vendor": "LateDelivery", "expected_arrival": "2024-11-15"},
+      {"reference": "PO134", "vendor": "SlowSupplier", "expected_arrival": "2024-11-18"}
+    ],
+    "final_response": "Les commandes en retard de livraison sont : PO133 (LateDelivery, prévue le 15/11) et PO134 (SlowSupplier, prévue le 18/11)."
+  },
+  {
+    "question": "Commandes nécessitant approbation budgétaire",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "pending_budget_approval",
+      "fields": "reference,vendor,total,approval_level"
+    },
+    "backend_response": [
+      {"reference": "PO135", "vendor": "ExpensiveTech", "total": 25000.00, "approval_level": "Director"},
+      {"reference": "PO136", "vendor": "HighValueCorp", "total": 35000.00, "approval_level": "CEO"}
+    ],
+    "final_response": "Les commandes nécessitant approbation budgétaire sont : PO135 (ExpensiveTech, 25000.00€, approbation Directeur) et PO136 (HighValueCorp, 35000.00€, approbation CEO)."
+  },
+  {
+    "question": "Confirmer réception partielle de PO137 - 5 unités de 'Product A' reçues",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO137",
+      "action": "partial_receipt",
+      "products": [
+        {"name": "Product A", "received_quantity": 5}
+      ]
+    },
+    "backend_response": {"success": true, "message": "Partial receipt confirmed"},
+    "final_response": "La réception partielle de la commande PO137 a été confirmée : Product A (5 unités reçues)."
+  },
+  {
+    "question": "Dupliquer la commande PO138 avec nouveau fournisseur AlternateVendor",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "action": "duplicate",
+      "source_reference": "PO138",
+      "new_vendor": "AlternateVendor"
+    },
+    "backend_response": {"new_order_reference": "PO139", "status": "created"},
+    "final_response": "La commande PO138 a été dupliquée sous la référence PO139 avec le nouveau fournisseur AlternateVendor."
+  },
+  {
+    "question": "Planifier livraison de PO140 pour le 18 décembre",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO140",
+      "action": "schedule_delivery",
+      "delivery_date": "2024-12-18"
+    },
+    "backend_response": {"success": true, "delivery_scheduled": true},
+    "final_response": "La livraison de la commande PO140 a été planifiée pour le 18 décembre 2024."
+  },
+  {
+    "question": "Archiver toutes les commandes annulées de 2022",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "filter": "cancelled_2022",
+      "action": "archive"
+    },
+    "backend_response": {"success": true, "archived_count": 32},
+    "final_response": "32 commandes annulées de 2022 ont été archivées avec succès."
+  },
+  {
+    "question": "Exporter les commandes de décembre 2024 en CSV",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "date_range": "2024-12-01,2024-12-31",
+      "export_format": "csv",
+      "fields": "all"
+    },
+    "backend_response": {"export_url": "/exports/orders_dec_2024.csv", "record_count": 85},
+    "final_response": "L'export CSV des 85 commandes de décembre 2024 est disponible au téléchargement à l'adresse /exports/orders_dec_2024.csv."
+  },
+  {
+    "question": "Générer rapport de performance fournisseur pour novembre 2024",
+    "entity": "report",
+    "intent": "post",
+    "query_params": {
+      "type": "vendor_performance",
+      "period": "november_2024",
+      "metrics": ["delivery_time", "quality_score"]
+    },
+    "backend_response": {"report_id": "RPT-2024-11-001", "status": "generating"},
+    "final_response": "Le rapport de performance fournisseur novembre 2024 est en cours de génération (ID: RPT-2024-11-001)."
+  },
+  {
+    "question": "Produits en rupture de stock",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "out_of_stock",
+      "fields": "name,unitprice,last_ordered"
+    },
+    "backend_response": [
+      {"name": "Premium Cable", "unitprice": 49.99, "last_ordered": "2024-10-10"},
+      {"name": "Special Adapter", "unitprice": 35.00, "last_ordered": "2024-09-15"}
+    ],
+    "final_response": "Les produits en rupture de stock sont : Premium Cable (49.99€, dernière commande 10/10) et Special Adapter (35.00€, dernière commande 15/09)."
+  },
+  {
+    "question": "Alertes de stock critique",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "critical_stock_alert",
+      "fields": "name,current_stock,minimum_stock"
+    },
+    "backend_response": [
+      {"name": "Essential Part", "current_stock": 3, "minimum_stock": 15},
+      {"name": "Critical Component", "current_stock": 2, "minimum_stock": 10}
+    ],
+    "final_response": "Alertes de stock critique : Essential Part (stock: 3, minimum: 15) et Critical Component (stock: 2, minimum: 10)."
+  },
+  {
+    "question": "Produits jamais commandés",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "never_ordered",
+      "fields": "name,unitprice"
+    },
+    "backend_response": [
+      {"name": "Obsolete Item", "unitprice": 99.99},
+      {"name": "New Product", "unitprice": 149.99}
+    ],
+    "final_response": "Les produits jamais commandés sont : Obsolete Item (99.99€) et New Product (149.99€)."
+  },
+  {
+    "question": "Produits les plus commandés ce trimestre",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "most_ordered_quarter",
+      "fields": "name,order_count,total_quantity"
+    },
+    "backend_response": [
+      {"name": "Standard Keyboard", "order_count": 25, "total_quantity": 120},
+      {"name": "Basic Mouse", "order_count": 30, "total_quantity": 150}
+    ],
+    "final_response": "Les produits les plus commandés ce trimestre sont : Basic Mouse (30 commandes, 150 unités) et Standard Keyboard (25 commandes, 120 unités)."
+  },
+  {
+    "question": "Modifier le prix unitaire du produit 'Standard Cable' à 12.50",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "name": "Standard Cable",
+      "unitprice": 12.50
+    },
+    "backend_response": {"success": true, "message": "Product price updated"},
+    "final_response": "Le prix unitaire du produit 'Standard Cable' a été modifié à 12.50€."
+  },
+  {
+    "question": "Historique des prix du produit 'Premium Monitor'",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "name": "Premium Monitor",
+      "fields": "price_history"
+    },
+    "backend_response": [
+      {"date": "2024-09-01", "price": 399.99},
+      {"date": "2024-10-01", "price": 379.99},
+      {"date": "2024-11-01", "price": 359.99}
+    ],
+    "final_response": "L'historique des prix de 'Premium Monitor' : septembre 399.99€, octobre 379.99€, novembre 359.99€."
+  },
+  {
+    "question": "Modifier la description du produit 'Ergonomic Chair' dans PO141",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "order_reference": "PO141",
+      "name": "Ergonomic Chair",
+      "description": "Chaise ergonomique avec support lombaire ajustable"
+    },
+    "backend_response": {"success": true, "message": "Product description updated"},
+    "final_response": "La description du produit 'Ergonomic Chair' dans la commande PO141 a été mise à jour."
+  },
+  {
+    "question": "Validation de conformité des produits dans PO142",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO142",
+      "fields": "name,compliance_status"
+    },
+    "backend_response": [
+      {"name": "Medical Device", "compliance_status": "validated"},
+      {"name": "Electronic Part", "compliance_status": "pending"}
+    ],
+    "final_response": "Conformité des produits PO142 : Medical Device (validé) et Electronic Part (en attente)."
+  },
+  {
+    "question": "Top 5 des fournisseurs par volume",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "filter": "top_5_by_volume",
+      "fields": "name,total_orders,total_amount"
+    },
+    "backend_response": [
+      {"name": "MainSupplier", "total_orders": 50, "total_amount": 150000.00},
+      {"name": "PrimaryVendor", "total_orders": 45, "total_amount": 135000.00}
+    ],
+    "final_response": "Le top 5 des fournisseurs par volume : MainSupplier (50 commandes, 150000€) et PrimaryVendor (45 commandes, 135000€)."
+  },
+  {
+    "question": "Fournisseurs avec plus de 10 commandes ce trimestre",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "filter": "order_count_gt_10",
+      "period": "current_quarter",
+      "fields": "name,order_count"
+    },
+    "backend_response": [
+      {"name": "FrequentSupplier", "order_count": 15},
+      {"name": "RegularPartner", "order_count": 12}
+    ],
+    "final_response": "Les fournisseurs avec plus de 10 commandes ce trimestre sont : FrequentSupplier (15 commandes) et RegularPartner (12 commandes)."
+  },
+  {
+    "question": "Fournisseurs sans commande depuis 3 mois",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "filter": "no_orders_3_months",
+      "fields": "name,last_order_date"
+    },
+    "backend_response": [
+      {"name": "InactiveVendor", "last_order_date": "2024-08-15"},
+      {"name": "OldSupplier", "last_order_date": "2024-08-20"}
+    ],
+    "final_response": "Les fournisseurs sans commande depuis 3 mois sont : InactiveVendor (dernière commande 15/08) et OldSupplier (dernière commande 20/08)."
+  },
+  {
+    "question": "Délai moyen de livraison du fournisseur FastDelivery",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "name": "FastDelivery",
+      "metric": "average_delivery_time"
+    },
+    "backend_response": 5.5,
+    "final_response": "Le délai moyen de livraison du fournisseur FastDelivery est de 5.5 jours."
+  },
+  {
+    "question": "Budget restant pour l'acheteur Marie Lambert",
+    "entity": "buyer",
+    "intent": "get",
+    "query_params": {
+      "name": "Marie Lambert",
+      "metric": "remaining_budget"
+    },
+    "backend_response": 18500.00,
+    "final_response": "Le budget restant pour l'acheteur Marie Lambert est de 18500.00€."
+  },
+  {
+    "question": "Valeur moyenne des commandes des 30 derniers jours",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "avg_order_value",
+      "period": "last_30_days"
+    },
+    "backend_response": 2450.75,
+    "final_response": "La valeur moyenne des commandes des 30 derniers jours est 2450.75€."
+  },
+  {
+    "question": "Montant total acheté ce mois",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "purchased_amount",
+      "period": "current_month"
+    },
+    "backend_response": 78500.00,
+    "final_response": "Le montant total acheté ce mois est 78500.00€."
+  },
+  {
+    "question": "Délai moyen d'achat",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "lead_time_purchase"
+    },
+    "backend_response": 10.2,
+    "final_response": "Le délai moyen d'achat est de 10.2 jours."
+  },
+  {
+    "question": "Nombre de demandes de prix envoyées ce mois",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "rfqs_sent",
+      "period": "current_month"
+    },
+    "backend_response": 42,
+    "final_response": "42 demandes de prix ont été envoyées ce mois."
+  },
+  {
+    "question": "Commandes avec position fiscale 'Export'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "fiscal_position": "Export",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO143", "vendor": "International", "total": 12500.00},
+      {"reference": "PO144", "vendor": "Global", "total": 18500.00}
+    ],
+    "final_response": "Les commandes avec position fiscale 'Export' sont : PO143 (International, 12500.00€) et PO144 (Global, 18500.00€)."
+  },
+  {
+    "question": "Commandes avec acheteur 'Thomas Martin'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "buyer": "Thomas Martin",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO145", "vendor": "TechSource", "total": 3200.00},
+      {"reference": "PO146", "vendor": "OfficeDirect", "total": 1500.00}
+    ],
+    "final_response": "Les commandes de l'acheteur Thomas Martin sont : PO145 (TechSource, 3200.00€) et PO146 (OfficeDirect, 1500.00€)."
+  },
+  {
+    "question": "Commandes avec document source 'RFQ-2024-020'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "source_document": "RFQ-2024-020",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO147", "vendor": "SelectedVendor", "total": 8500.00}
+    ],
+    "final_response": "La commande avec document source RFQ-2024-020 est : PO147 (SelectedVendor, 8500.00€)."
+  },
+  {
+    "question": "Commandes avec priorité 'high'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "priority": "high",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO148", "vendor": "UrgentSupply", "total": 5000.00},
+      {"reference": "PO149", "vendor": "FastTrack", "total": 3200.00}
+    ],
+    "final_response": "Les commandes avec priorité 'high' sont : PO148 (UrgentSupply, 5000.00€) et PO149 (FastTrack, 3200.00€)."
+  },
+  {
+    "question": "Commandes avec statut 'cancelled'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "status": "cancelled",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO150", "vendor": "OldSupplier", "total": 1500.00},
+      {"reference": "PO151", "vendor": "Discontinued", "total": 2300.00}
+    ],
+    "final_response": "Les commandes avec statut 'cancelled' sont : PO150 (OldSupplier, 1500.00€) et PO151 (Discontinued, 2300.00€)."
+  },
+  {
+    "question": "Commandes en attente de confirmation",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "pending_confirmation",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO152", "vendor": "WaitingVendor", "total": 1800.00},
+      {"reference": "PO153", "vendor": "PendingApproval", "total": 2500.00}
+    ],
+    "final_response": "Les commandes en attente de confirmation sont : PO152 (WaitingVendor, 1800.00€) et PO153 (PendingApproval, 2500.00€)."
+  },
+  {
+    "question": "Commandes du mois de décembre 2024",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "date_range": "2024-12-01,2024-12-31",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO154", "vendor": "DecemberVendor", "total": 3200.00},
+      {"reference": "PO155", "vendor": "HolidaySupply", "total": 1500.00}
+    ],
+    "final_response": "Les commandes de décembre 2024 sont : PO154 (DecemberVendor, 3200.00€) et PO155 (HolidaySupply, 1500.00€)."
+  },
+  {
+    "question": "Ajouter un rabais de 10% à tous les produits de PO156",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO156",
+      "action": "apply_discount",
+      "discount": 10.0
+    },
+    "backend_response": {"success": true, "products_updated": 5, "total_discount": 215.50},
+    "final_response": "Un rabais de 10% a été appliqué à tous les produits (5 produits) de la commande PO156, pour un total de remise de 215.50€."
+  },
+  {
+    "question": "Quel est le statut de la commande PO800 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO800",
+      "fields": "status"
+    },
+    "backend_response": 404,
+    "final_response": "Erreur : La commande PO800 n'existe pas dans le système."
+  },
+  {
+    "question": "Créer une commande avec un fournisseur inexistant",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "vendor": "UnknownSupplier",
+      "products": "Test Product"
+    },
+    "backend_response": 404,
+    "final_response": "Erreur : Le fournisseur 'UnknownSupplier' n'existe pas dans le système."
+  },
+  {
+    "question": "Accéder à la commande PO801 sans autorisation",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO801",
+      "fields": "all"
+    },
+    "backend_response": 403,
+    "final_response": "Erreur : Accès non autorisé à la commande PO801. Vérifiez vos permissions."
+  },
+  {
+    "question": "Modifier une commande verrouillée PO802",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO802",
+      "status": "cancelled"
+    },
+    "backend_response": 423,
+    "final_response": "Erreur : La commande PO802 est verrouillée et ne peut pas être modifiée."
+  },
+  {
+    "question": "Supprimer une commande déjà facturée PO803",
+    "entity": "order",
+    "intent": "delete",
+    "query_params": {
+      "reference": "PO803"
+    },
+    "backend_response": 400,
+    "final_response": "Erreur : La commande PO803 ne peut pas être supprimée car elle a déjà été facturée."
+  },
+  {
+    "question": "Erreur serveur lors de la récupération des commandes",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "status": "purchase order",
+      "fields": "all"
+    },
+    "backend_response": 500,
+    "final_response": "Erreur serveur : Impossible de récupérer les commandes. Veuillez réessayer plus tard."
+  },  
+  {
+    "question": "Quel est le statut de la commande PO001 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO001",
+      "fields": "status"
+    },
+    "backend_response": "purchase order",
+    "final_response": "Le statut de la commande PO001 est 'purchase order'."
+  },
+  {
+    "question": "Affiche-moi toutes les commandes du fournisseur Supplier A",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "vendor": "Supplier A",
+      "fields": "all"
+    },
+    "backend_response": [
+      {"reference": "PO001", "vendor": "Supplier A", "total": 1500.00, "status": "purchase order"},
+      {"reference": "PO005", "vendor": "Supplier A", "total": 2300.50, "status": "cancelled"}
+    ],
+    "final_response": "Voici les commandes du fournisseur Supplier A : PO001 (1500.00€, purchase order) et PO005 (2300.50€, cancelled)."
+  },
+  {
+    "question": "Combien coûte le produit 'Laptop Dell' ?",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "name": "Laptop Dell",
+      "fields": "unitprice"
+    },
+    "backend_response": 899.99,
+    "final_response": "Le prix unitaire du produit 'Laptop Dell' est 899.99€."
+  },
+  {
+    "question": "Quelle est la date limite de la commande PO002 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO002",
+      "fields": "deadline"
+    },
+    "backend_response": "2024-12-15",
+    "final_response": "La date limite de la commande PO002 est le 15 décembre 2024."
+  },
+  {
+    "question": "Modifier le statut de la commande PO003 en cancelled",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO003",
+      "status": "cancelled"
+    },
+    "backend_response": {"success": true, "message": "Order status updated"},
+    "final_response": "Le statut de la commande PO003 a été modifié avec succès en 'cancelled'."
+  },
+  {
+    "question": "Créer une nouvelle commande pour le fournisseur TechCorp avec le produit Mouse",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "vendor": "TechCorp",
+      "products": "Mouse"
+    },
+    "backend_response": {"id": "PO015", "status": "created", "vendor": "TechCorp"},
+    "final_response": "Une nouvelle commande PO015 a été créée pour le fournisseur TechCorp avec le produit Mouse."
+  },
+  {
+    "question": "Supprimer la commande PO004",
+    "entity": "order",
+    "intent": "delete",
+    "query_params": {
+      "reference": "PO004"
+    },
+    "backend_response": {"success": true, "message": "Order deleted"},
+    "final_response": "La commande PO004 a été supprimée avec succès."
+  },
+  {
+    "question": "Montant total hors taxes de la commande PO006",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO006",
+      "fields": "untaxed"
+    },
+    "backend_response": 1250.00,
+    "final_response": "Le montant total hors taxes de la commande PO006 est 1250.00€."
+  },
+  {
+    "question": "Quels sont les produits de la commande PO007 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO007",
+      "fields": "products"
+    },
+    "backend_response": [
+      {"name": "Keyboard", "quantity": 5, "unitprice": 45.00},
+      {"name": "Monitor", "quantity": 2, "unitprice": 299.99}
+    ],
+    "final_response": "Les produits de la commande PO007 sont : Keyboard (5 unités à 45.00€) et Monitor (2 unités à 299.99€)."
+  },
+  {
+    "question": "Quel est le statut de facturation de la commande PO008 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO008",
+      "fields": "billing_status"
+    },
+    "backend_response": "waiting to bill",
+    "final_response": "Le statut de facturation de la commande PO008 est 'waiting to bill'."
+  },
+  {
+    "question": "Affiche toutes les commandes avec le statut cancelled",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "status": "cancelled",
+      "fields": "all"
+    },
+    "backend_response": [
+      {"reference": "PO003", "vendor": "ABC Corp", "total": 750.00},
+      {"reference": "PO005", "vendor": "Supplier A", "total": 2300.50}
+    ],
+    "final_response": "Voici les commandes avec le statut cancelled : PO003 (ABC Corp, 750.00€) et PO005 (Supplier A, 2300.50€)."
+  },
+  {
+    "question": "Quelle est la date de confirmation de la commande PO009 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO009",
+      "fields": "confirmation_date"
+    },
+    "backend_response": "2024-11-20",
+    "final_response": "La date de confirmation de la commande PO009 est le 20 novembre 2024."
+  },
+  {
+    "question": "Mettre à jour la quantité du produit Tablet dans la commande PO010 à 15",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "order_reference": "PO010",
+      "name": "Tablet",
+      "quantity": 15
+    },
+    "backend_response": {"success": true, "message": "Product quantity updated"},
+    "final_response": "La quantité du produit Tablet dans la commande PO010 a été mise à jour à 15 unités."
+  },
+  {
+    "question": "Commandes avec une priorité élevée",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "priority": "high",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO011", "vendor": "UrgentTech", "total": 5000.00},
+      {"reference": "PO012", "vendor": "FastSupply", "total": 3200.75}
+    ],
+    "final_response": "Les commandes avec une priorité élevée sont : PO011 (UrgentTech, 5000.00€) et PO012 (FastSupply, 3200.75€)."
+  },
+  {
+    "question": "Quel est l'acheteur de la commande PO013 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO013",
+      "fields": "buyer"
+    },
+    "backend_response": "John Smith",
+    "final_response": "L'acheteur de la commande PO013 est John Smith."
+  },
+  {
+    "question": "Montant des taxes pour le produit 'Office Chair' ?",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "name": "Office Chair",
+      "fields": "taxes"
+    },
+    "backend_response": 45.50,
+    "final_response": "Le montant des taxes pour le produit 'Office Chair' est 45.50€."
+  },
+  {
+    "question": "Date d'arrivée prévue pour la commande PO014",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO014",
+      "fields": "expected_arrival"
+    },
+    "backend_response": "2024-12-05",
+    "final_response": "La date d'arrivée prévue pour la commande PO014 est le 5 décembre 2024."
+  },
+  {
+    "question": "Créer un produit 'New Laptop' avec prix 1200",
+    "entity": "product",
+    "intent": "post",
+    "query_params": {
+      "name": "New Laptop",
+      "unitprice": 1200
+    },
+    "backend_response": {"id": "PROD001", "name": "New Laptop", "unitprice": 1200},
+    "final_response": "Le produit 'New Laptop' a été créé avec succès au prix de 1200€ (ID: PROD001)."
+  },
+  {
+    "question": "Quelles sont les activités de la commande PO015 ?",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO015",
+      "fields": "activities"
+    },
+    "backend_response": [
+      {"type": "email", "date": "2024-11-18", "description": "Quote sent"},
+      {"type": "call", "date": "2024-11-19", "description": "Follow-up call"}
+    ],
+    "final_response": "Les activités de la commande PO015 sont : Email envoyé le 18/11/2024 (Quote sent) et Appel de suivi le 19/11/2024."
+  },
+  {
+    "question": "Document source de la commande PO016",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO016",
+      "fields": "source_document"
+    },
+    "backend_response": "RFQ-2024-001",
+    "final_response": "Le document source de la commande PO016 est RFQ-2024-001."
+  },
+  {
+    "question": "Toutes les commandes du mois de novembre 2024",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "date_range": "2024-11-01,2024-11-30",
+      "fields": "reference,vendor,total,confirmation_date"
+    },
+    "backend_response": [
+      {"reference": "PO013", "vendor": "TechSol", "total": 1800.00, "confirmation_date": "2024-11-05"},
+      {"reference": "PO014", "vendor": "DataCorp", "total": 2500.00, "confirmation_date": "2024-11-12"},
+      {"reference": "PO015", "vendor": "CloudTech", "total": 3200.00, "confirmation_date": "2024-11-20"}
+    ],
+    "final_response": "Les commandes de novembre 2024 sont : PO013 (TechSol, 1800.00€, confirmée le 05/11), PO014 (DataCorp, 2500.00€, confirmée le 12/11), et PO015 (CloudTech, 3200.00€, confirmée le 20/11)."
+  },
+  {
+    "question": "Mettre la priorité de la commande PO017 à urgent",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO017",
+      "priority": "urgent"
+    },
+    "backend_response": {"success": true, "message": "Priority updated"},
+    "final_response": "La priorité de la commande PO017 a été mise à jour à 'urgent'."
+  },
+  {
+    "question": "Référence fournisseur de la commande PO018",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO018",
+      "fields": "vendor_reference"
+    },
+    "backend_response": "SUPP-REF-2024-045",
+    "final_response": "La référence fournisseur de la commande PO018 est SUPP-REF-2024-045."
+  },
+  {
+    "question": "Description du produit 'Wireless Mouse' dans la commande PO019",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO019",
+      "name": "Wireless Mouse",
+      "fields": "description"
+    },
+    "backend_response": "Souris sans fil ergonomique avec batterie rechargeable",
+    "final_response": "La description du produit 'Wireless Mouse' dans la commande PO019 est : Souris sans fil ergonomique avec batterie rechargeable."
+  },
+  {
+    "question": "Quantité reçue du produit 'Keyboard Pro' dans la commande PO020",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO020",
+      "name": "Keyboard Pro",
+      "fields": "received"
+    },
+    "backend_response": 8,
+    "final_response": "La quantité reçue du produit 'Keyboard Pro' dans la commande PO020 est 8 unités."
+  },
+  {
+    "question": "Montant facturé pour le produit 'Monitor 24' dans PO021",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO021",
+      "name": "Monitor 24",
+      "fields": "billed"
+    },
+    "backend_response": 299.99,
+    "final_response": "Le montant facturé pour le produit 'Monitor 24' dans la commande PO021 est 299.99€."
+  },
+  {
+    "question": "Remise appliquée sur le produit 'Server Rack' dans PO022",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO022",
+      "name": "Server Rack",
+      "fields": "discount"
+    },
+    "backend_response": 15.5,
+    "final_response": "La remise appliquée sur le produit 'Server Rack' dans la commande PO022 est de 15.5%."
+  },
+  {
+    "question": "Montant hors taxes du produit 'Printer' dans PO023",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO023",
+      "name": "Printer",
+      "fields": "untaxed_amount"
+    },
+    "backend_response": 450.00,
+    "final_response": "Le montant hors taxes du produit 'Printer' dans la commande PO023 est 450.00€."
+  },
+  {
+    "question": "Total avec taxes du produit 'Scanner' dans PO024",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO024",
+      "name": "Scanner",
+      "fields": "tax_total"
+    },
+    "backend_response": 360.00,
+    "final_response": "Le total avec taxes du produit 'Scanner' dans la commande PO024 est 360.00€."
+  },
+  {
+    "question": "Conditions de paiement de la commande PO025",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO025",
+      "fields": "payment_terms"
+    },
+    "backend_response": "30 jours fin de mois",
+    "final_response": "Les conditions de paiement de la commande PO025 sont : 30 jours fin de mois."
+  },
+  {
+    "question": "Position fiscale de la commande PO026",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO026",
+      "fields": "fiscal_position"
+    },
+    "backend_response": "National",
+    "final_response": "La position fiscale de la commande PO026 est 'National'."
+  },
+  {
+    "question": "Numéro client de la facture INV-001",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-001",
+      "fields": "customer"
+    },
+    "backend_response": "CLIENT-2024-001",
+    "final_response": "Le numéro client de la facture INV-001 est CLIENT-2024-001."
+  },
+  {
+    "question": "Date d'échéance de la facture INV-002",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-002",
+      "fields": "due_date"
+    },
+    "backend_response": "2024-12-31",
+    "final_response": "La date d'échéance de la facture INV-002 est le 31 décembre 2024."
+  },
+  {
+    "question": "Total hors taxes de la facture INV-003",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-003",
+      "fields": "tax_excluded_total"
+    },
+    "backend_response": 1500.00,
+    "final_response": "Le total hors taxes de la facture INV-003 est 1500.00€."
+  },
+  {
+    "question": "Statut de paiement de la facture INV-004",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-004",
+      "fields": "payment_status"
+    },
+    "backend_response": "paid",
+    "final_response": "Le statut de paiement de la facture INV-004 est 'paid'."
+  },
+  {
+    "question": "Statut de la facture INV-005",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-005",
+      "fields": "status"
+    },
+    "backend_response": "draft",
+    "final_response": "Le statut de la facture INV-005 est 'draft'."
+  },
+  {
+    "question": "Valeur moyenne des commandes des 7 derniers jours",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "avg_order_value",
+      "period": "last_7_days"
+    },
+    "backend_response": 2340.50,
+    "final_response": "La valeur moyenne des commandes des 7 derniers jours est 2340.50€."
+  },
+  {
+    "question": "Montant total acheté les 7 derniers jours",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "purchased_amount",
+      "period": "last_7_days"
+    },
+    "backend_response": 18500.00,
+    "final_response": "Le montant total acheté les 7 derniers jours est 18500.00€."
+  },
+  {
+    "question": "Délai moyen d'achat",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "lead_time_purchase"
+    },
+    "backend_response": 12.5,
+    "final_response": "Le délai moyen d'achat est de 12.5 jours."
+  },
+  {
+    "question": "Nombre de demandes de prix envoyées les 7 derniers jours",
+    "entity": "analytics",
+    "intent": "get",
+    "query_params": {
+      "metric": "rfqs_sent",
+      "period": "last_7_days"
+    },
+    "backend_response": 15,
+    "final_response": "15 demandes de prix ont été envoyées les 7 derniers jours."
+  },
+  {
+    "question": "Toutes mes demandes de prix à envoyer",
+    "entity": "rfq",
+    "intent": "get",
+    "query_params": {
+      "status": "to_send",
+      "scope": "my"
+    },
+    "backend_response": [
+      {"reference": "RFQ-001", "vendor": "TechSupplier", "products": ["Laptop", "Mouse"]},
+      {"reference": "RFQ-002", "vendor": "OfficeSupply", "products": ["Chair", "Desk"]}
+    ],
+    "final_response": "Vos demandes de prix à envoyer sont : RFQ-001 (TechSupplier - Laptop, Mouse) et RFQ-002 (OfficeSupply - Chair, Desk)."
+  },
+  {
+    "question": "Demandes de prix en attente dans mon portefeuille",
+    "entity": "rfq",
+    "intent": "get",
+    "query_params": {
+      "status": "waiting",
+      "scope": "my"
+    },
+    "backend_response": [
+      {"reference": "RFQ-003", "vendor": "CloudProvider", "sent_date": "2024-11-15"},
+      {"reference": "RFQ-004", "vendor": "SecurityCorp", "sent_date": "2024-11-18"}
+    ],
+    "final_response": "Vos demandes de prix en attente sont : RFQ-003 (CloudProvider, envoyée le 15/11) et RFQ-004 (SecurityCorp, envoyée le 18/11)."
+  },
+  {
+    "question": "Demandes de prix en retard",
+    "entity": "rfq",
+    "intent": "get",
+    "query_params": {
+      "status": "late",
+      "scope": "all"
+    },
+    "backend_response": [
+      {"reference": "RFQ-005", "vendor": "SlowSupplier", "due_date": "2024-11-10", "buyer": "Alice Johnson"}
+    ],
+    "final_response": "La demande de prix en retard est : RFQ-005 (SlowSupplier, échéance 10/11, acheteur Alice Johnson)."
+  },
+  {
+    "question": "Ajouter une activité à la commande PO027",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "reference": "PO027",
+      "activity_type": "email",
+      "description": "Confirmation d'expédition"
+    },
+    "backend_response": {"success": true, "activity_id": "ACT-001"},
+    "final_response": "Une activité email 'Confirmation d'expédition' a été ajoutée à la commande PO027 (ID: ACT-001)."
+  },
+  {
+    "question": "Modifier la date d'échéance de la facture INV-006 au 15 janvier 2025",
+    "entity": "invoice",
+    "intent": "put",
+    "query_params": {
+      "numero": "INV-006",
+      "due_date": "2025-01-15"
+    },
+    "backend_response": {"success": true, "message": "Due date updated"},
+    "final_response": "La date d'échéance de la facture INV-006 a été modifiée au 15 janvier 2025."
+  },
+  {
+    "question": "Supprimer le produit 'Old Mouse' de la commande PO028",
+    "entity": "product",
+    "intent": "delete",
+    "query_params": {
+      "order_reference": "PO028",
+      "name": "Old Mouse"
+    },
+    "backend_response": {"success": true, "message": "Product removed from order"},
+    "final_response": "Le produit 'Old Mouse' a été supprimé de la commande PO028."
+  },
+  {
+    "question": "Commandes avec statut de facturation 'nothing to bill'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "billing_status": "nothing to bill",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO029", "vendor": "CompleteCorp", "total": 890.00},
+      {"reference": "PO030", "vendor": "FinishedSupply", "total": 1200.00}
+    ],
+    "final_response": "Les commandes avec le statut de facturation 'nothing to bill' sont : PO029 (CompleteCorp, 890.00€) et PO030 (FinishedSupply, 1200.00€)."
+  },
+  {
+    "question": "Produits avec taxes incluses dans la commande PO031",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO031",
+      "fields": "name,taxes_incl"
+    },
+    "backend_response": [
+      {"name": "Laptop Pro", "taxes_incl": true},
+      {"name": "External Drive", "taxes_incl": false}
+    ],
+    "final_response": "Dans la commande PO031 : Laptop Pro (taxes incluses) et External Drive (taxes exclues)."
+  },
+  {
+    "question": "Changer le fournisseur de la commande PO032 à NewSupplier",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO032",
+      "vendor": "NewSupplier"
+    },
+    "backend_response": {"success": true, "message": "Vendor updated"},
+    "final_response": "Le fournisseur de la commande PO032 a été changé pour NewSupplier."
+  },
+  {
+    "question": "Créer une facture pour la commande PO033",
+    "entity": "invoice",
+    "intent": "post",
+    "query_params": {
+      "order_reference": "PO033"
+    },
+    "backend_response": {"invoice_number": "INV-007", "status": "created"},
+    "final_response": "La facture INV-007 a été créée pour la commande PO033."
+  },
+  {
+    "question": "Toutes les factures avec statut 'posted'",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "status": "posted",
+      "fields": "numero,customer,tax_excluded_total"
+    },
+    "backend_response": [
+      {"numero": "INV-008", "customer": "CLIENT-001", "tax_excluded_total": 2500.00},
+      {"numero": "INV-009", "customer": "CLIENT-002", "tax_excluded_total": 1800.00}
+    ],
+    "final_response": "Les factures avec statut 'posted' sont : INV-008 (CLIENT-001, 2500.00€) et INV-009 (CLIENT-002, 1800.00€)."
+  },
+  {
+    "question": "Activités de la facture INV-010",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "numero": "INV-010",
+      "fields": "activities"
+    },
+    "backend_response": [
+      {"type": "email", "date": "2024-11-20", "description": "Facture envoyée"},
+      {"type": "call", "date": "2024-11-25", "description": "Relance paiement"}
+    ],
+    "final_response": "Les activités de la facture INV-010 sont : Email envoyé le 20/11 (Facture envoyée) et Appel le 25/11 (Relance paiement)."
+  },
+  {
+    "question": "Montant total TTC de la commande PO034",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO034",
+      "fields": "total"
+    },
+    "backend_response": 3450.75,
+    "final_response": "Le montant total TTC de la commande PO034 est 3450.75€."
+  },
+  {
+    "question": "Liste des produits jamais commandés",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "never_ordered",
+      "fields": "name,unitprice"
+    },
+    "backend_response": [
+      {"name": "Rare Component", "unitprice": 150.00},
+      {"name": "Specialty Tool", "unitprice": 89.99}
+    ],
+    "final_response": "Les produits jamais commandés sont : Rare Component (150.00€) et Specialty Tool (89.99€)."
+  },
+  {
+    "question": "Commandes en retard de livraison",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "late_delivery",
+      "fields": "reference,vendor,expected_arrival"
+    },
+    "backend_response": [
+      {"reference": "PO035", "vendor": "LateSupplier", "expected_arrival": "2024-11-15"},
+      {"reference": "PO036", "vendor": "DelayedCorp", "expected_arrival": "2024-11-18"}
+    ],
+    "final_response": "Les commandes en retard de livraison sont : PO035 (LateSupplier, prévue le 15/11) et PO036 (DelayedCorp, prévue le 18/11)."
+  },
+  {
+    "question": "Modifier le prix unitaire du produit 'USB Drive' à 25.00",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "name": "USB Drive",
+      "unitprice": 25.00
+    },
+    "backend_response": {"success": true, "message": "Product price updated"},
+    "final_response": "Le prix unitaire du produit 'USB Drive' a été modifié à 25.00€."
+  },
+  {
+    "question": "Fournisseurs avec plus de 5 commandes ce mois",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "filter": "order_count_gt_5",
+      "period": "current_month"
+    },
+    "backend_response": [
+      {"name": "FrequentSupplier", "order_count": 8, "total_amount": 15000.00},
+      {"name": "RegularCorp", "order_count": 6, "total_amount": 9500.00}
+    ],
+    "final_response": "Les fournisseurs avec plus de 5 commandes ce mois sont : FrequentSupplier (8 commandes, 15000.00€) et RegularCorp (6 commandes, 9500.00€)."
+  },
+  {
+    "question": "Commande inexistante PO999",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO999",
+      "fields": "all"
+    },
+    "backend_response": 404,
+    "final_response": "Erreur : La commande PO999 n'existe pas dans le système."
+  },
+  {
+    "question": "Produit introuvable 'NonExistent Product'",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "name": "NonExistent Product",
+      "fields": "unitprice"
+    },
+    "backend_response": 404,
+    "final_response": "Erreur : Le produit 'NonExistent Product' est introuvable."
+  },
+  {
+    "question": "Toutes les commandes urgentes du fournisseur TechCorp",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "vendor": "TechCorp",
+      "priority": "urgent",
+      "fields": "reference,total,deadline"
+    },
+    "backend_response": [
+      {"reference": "PO037", "total": 4500.00, "deadline": "2024-12-01"},
+      {"reference": "PO038", "total": 2800.00, "deadline": "2024-11-28"}
+    ],
+    "final_response": "Les commandes urgentes du fournisseur TechCorp sont : PO037 (4500.00€, échéance 01/12) et PO038 (2800.00€, échéance 28/11)."
+  },
+  {
+    "question": "Changer la date d'arrivée prévue de PO039 au 10 décembre 2024",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO039",
+      "expected_arrival": "2024-12-10"
+    },
+    "backend_response": {"success": true, "message": "Expected arrival date updated"},
+    "final_response": "La date d'arrivée prévue de la commande PO039 a été mise à jour au 10 décembre 2024."
+  },
+  {
+    "question": "Produits avec remise supérieure à 10% dans PO040",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO040",
+      "filter": "discount_gt_10",
+      "fields": "name,discount,unitprice"
+    },
+    "backend_response": [
+      {"name": "Bulk Item A", "discount": 15.0, "unitprice": 200.00},
+      {"name": "Clearance Item", "discount": 25.0, "unitprice": 80.00}
+    ],
+    "final_response": "Les produits avec remise > 10% dans PO040 sont : Bulk Item A (15% de remise, 200.00€) et Clearance Item (25% de remise, 80.00€)."
+  },
+  {
+    "question": "Créer une activité de type appel pour la facture INV-011",
+    "entity": "invoice",
+    "intent": "post",
+    "query_params": {
+      "numero": "INV-011",
+      "activity_type": "call",
+      "description": "Suivi paiement en retard"
+    },
+    "backend_response": {"success": true, "activity_id": "ACT-002"},
+    "final_response": "Une activité d'appel 'Suivi paiement en retard' a été créée pour la facture INV-011 (ID: ACT-002)."
+  },
+  {
+    "question": "Factures impayées avec date d'échéance dépassée",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "payment_status": "not paid",
+      "filter": "overdue",
+      "fields": "numero,customer,due_date,tax_excluded_total"
+    },
+    "backend_response": [
+      {"numero": "INV-012", "customer": "CLIENT-003", "due_date": "2024-11-10", "tax_excluded_total": 1200.00},
+      {"numero": "INV-013", "customer": "CLIENT-004", "due_date": "2024-11-05", "tax_excluded_total": 890.00}
+    ],
+    "final_response": "Les factures impayées en retard sont : INV-012 (CLIENT-003, échue le 10/11, 1200.00€) et INV-013 (CLIENT-004, échue le 05/11, 890.00€)."
+  },
+  {
+    "question": "Marquer la facture INV-014 comme payée",
+    "entity": "invoice",
+    "intent": "put",
+    "query_params": {
+      "numero": "INV-014",
+      "payment_status": "paid"
+    },
+    "backend_response": {"success": true, "message": "Payment status updated"},
+    "final_response": "La facture INV-014 a été marquée comme payée."
+  },
+  {
+    "question": "Commandes avec document source RFQ-2024-002",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "source_document": "RFQ-2024-002",
+      "fields": "reference,vendor,total,status"
+    },
+    "backend_response": [
+      {"reference": "PO041", "vendor": "WinningBidder", "total": 5500.00, "status": "purchase order"}
+    ],
+    "final_response": "La commande avec document source RFQ-2024-002 est : PO041 (WinningBidder, 5500.00€, purchase order)."
+  },
+  {
+    "question": "Ajouter le produit 'New Tablet' à la commande PO042 avec quantité 3",
+    "entity": "product",
+    "intent": "post",
+    "query_params": {
+      "order_reference": "PO042",
+      "name": "New Tablet",
+      "quantity": 3,
+      "unitprice": 399.99
+    },
+    "backend_response": {"success": true, "message": "Product added to order"},
+    "final_response": "Le produit 'New Tablet' a été ajouté à la commande PO042 avec une quantité de 3 unités à 399.99€."
+  },
+  {
+    "question": "Taxes exclues pour tous les produits de la commande PO043",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO043",
+      "fields": "name,taxes_excl"
+    },
+    "backend_response": [
+      {"name": "Industrial Tool", "taxes_excl": true},
+      {"name": "Standard Component", "taxes_excl": false}
+    ],
+    "final_response": "Dans la commande PO043 : Industrial Tool (taxes exclues) et Standard Component (taxes incluses)."
+  },
+  {
+    "question": "Position fiscale 'Export' pour toutes les commandes",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "fiscal_position": "Export",
+      "fields": "reference,vendor,total"
+    },
+    "backend_response": [
+      {"reference": "PO044", "vendor": "ExportSupplier", "total": 8900.00},
+      {"reference": "PO045", "vendor": "InternationalCorp", "total": 12500.00}
+    ],
+    "final_response": "Les commandes avec position fiscale 'Export' sont : PO044 (ExportSupplier, 8900.00€) et PO045 (InternationalCorp, 12500.00€)."
+  },
+  {
+    "question": "Modifier les conditions de paiement de PO046 à '15 jours'",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO046",
+      "payment_terms": "15 jours"
+    },
+    "backend_response": {"success": true, "message": "Payment terms updated"},
+    "final_response": "Les conditions de paiement de la commande PO046 ont été modifiées à '15 jours'."
+  },
+  {
+    "question": "Supprimer la facture INV-015",
+    "entity": "invoice",
+    "intent": "delete",
+    "query_params": {
+      "numero": "INV-015"
+    },
+    "backend_response": {"success": true, "message": "Invoice deleted"},
+    "final_response": "La facture INV-015 a été supprimée avec succès."
+  },
+  {
+    "question": "Commandes confirmées cette semaine",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "confirmed_this_week",
+      "fields": "reference,vendor,confirmation_date,total"
+    },
+    "backend_response": [
+      {"reference": "PO047", "vendor": "WeeklySupplier", "confirmation_date": "2024-11-25", "total": 1800.00},
+      {"reference": "PO048", "vendor": "QuickCorp", "confirmation_date": "2024-11-26", "total": 2300.00}
+    ],
+    "final_response": "Les commandes confirmées cette semaine sont : PO047 (WeeklySupplier, confirmée le 25/11, 1800.00€) et PO048 (QuickCorp, confirmée le 26/11, 2300.00€)."
+  },
+  {
+    "question": "Erreur serveur lors de la création de commande",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "vendor": "TestSupplier",
+      "products": "Test Product"
+    },
+    "backend_response": 500,
+    "final_response": "Erreur serveur : Impossible de créer la commande. Veuillez réessayer plus tard."
+  },
+  {
+    "question": "Accès non autorisé à la commande PO049",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "reference": "PO049",
+      "fields": "all"
+    },
+    "backend_response": 403,
+    "final_response": "Erreur : Accès non autorisé à la commande PO049. Vérifiez vos permissions."
+  },
+  {
+    "question": "Produits en rupture de stock",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "out_of_stock",
+      "fields": "name,unitprice,last_ordered"
+    },
+    "backend_response": [
+      {"name": "Rare Material", "unitprice": 299.99, "last_ordered": "2024-10-15"},
+      {"name": "Limited Edition", "unitprice": 450.00, "last_ordered": "2024-09-20"}
+    ],
+    "final_response": "Les produits en rupture de stock sont : Rare Material (299.99€, dernière commande 15/10) et Limited Edition (450.00€, dernière commande 20/09)."
+  },
+  {
+    "question": "Top 5 des fournisseurs par volume d'achat",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "filter": "top_5_by_volume",
+      "fields": "name,total_orders,total_amount"
+    },
+    "backend_response": [
+      {"name": "MegaSupplier", "total_orders": 45, "total_amount": 125000.00},
+      {"name": "BigCorp", "total_orders": 38, "total_amount": 98500.00},
+      {"name": "MajorTech", "total_orders": 32, "total_amount": 87300.00},
+      {"name": "PrimeCorp", "total_orders": 28, "total_amount": 76800.00},
+      {"name": "TopSupply", "total_orders": 25, "total_amount": 65400.00}
+    ],
+    "final_response": "Le top 5 des fournisseurs par volume sont : MegaSupplier (45 commandes, 125000€), BigCorp (38 commandes, 98500€), MajorTech (32 commandes, 87300€), PrimeCorp (28 commandes, 76800€), et TopSupply (25 commandes, 65400€)."
+  },
+  {
+    "question": "Changer le statut de la facture INV-016 en 'posted'",
+    "entity": "invoice",
+    "intent": "put",
+    "query_params": {
+      "numero": "INV-016",
+      "status": "posted"
+    },
+    "backend_response": {"success": true, "message": "Invoice status updated"},
+    "final_response": "Le statut de la facture INV-016 a été changé en 'posted'."
+  },
+  {
+    "question": "Commandes avec acheteur 'Marie Dupont'",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "buyer": "Marie Dupont",
+      "fields": "reference,vendor,total,status"
+    },
+    "backend_response": [
+      {"reference": "PO050", "vendor": "TechSolutions", "total": 3200.00, "status": "purchase order"},
+      {"reference": "PO051", "vendor": "OfficeMax", "total": 1500.00, "status": "purchase order"}
+    ],
+    "final_response": "Les commandes de l'acheteur Marie Dupont sont : PO050 (TechSolutions, 3200.00€, purchase order) et PO051 (OfficeMax, 1500.00€, purchase order)."
+  },
+  {
+    "question": "Moyenne des délais de livraison du fournisseur SpeedySupply",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "name": "SpeedySupply",
+      "metric": "average_delivery_time"
+    },
+    "backend_response": 8.5,
+    "final_response": "La moyenne des délais de livraison du fournisseur SpeedySupply est de 8.5 jours."
+  },
+  {
+    "question": "Produits les plus commandés ce mois",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "most_ordered_this_month",
+      "fields": "name,order_count,total_quantity"
+    },
+    "backend_response": [
+      {"name": "Popular Laptop", "order_count": 12, "total_quantity": 45},
+      {"name": "Standard Mouse", "order_count": 15, "total_quantity": 89},
+      {"name": "Office Chair", "order_count": 8, "total_quantity": 23}
+    ],
+    "final_response": "Les produits les plus commandés ce mois sont : Standard Mouse (15 commandes, 89 unités), Popular Laptop (12 commandes, 45 unités), et Office Chair (8 commandes, 23 unités)."
+  },
+  {
+    "question": "Créer une demande de prix pour 'Server Equipment' chez DataCenter Corp",
+    "entity": "rfq",
+    "intent": "post",
+    "query_params": {
+      "vendor": "DataCenter Corp",
+      "products": "Server Equipment",
+      "deadline": "2024-12-15"
+    },
+    "backend_response": {"rfq_reference": "RFQ-2024-010", "status": "created"},
+    "final_response": "La demande de prix RFQ-2024-010 a été créée pour 'Server Equipment' chez DataCenter Corp avec échéance au 15 décembre 2024."
+  },
+  {
+    "question": "Envoyer la demande de prix RFQ-2024-011",
+    "entity": "rfq",
+    "intent": "put",
+    "query_params": {
+      "reference": "RFQ-2024-011",
+      "action": "send"
+    },
+    "backend_response": {"success": true, "sent_date": "2024-11-27"},
+    "final_response": "La demande de prix RFQ-2024-011 a été envoyée avec succès le 27 novembre 2024."
+  },
+  {
+    "question": "Commandes en attente de confirmation",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "pending_confirmation",
+      "fields": "reference,vendor,total,buyer"
+    },
+    "backend_response": [
+      {"reference": "PO052", "vendor": "PendingSupplier", "total": 2100.00, "buyer": "Jean Martin"},
+      {"reference": "PO053", "vendor": "AwaitingCorp", "total": 3500.00, "buyer": "Lisa Wong"}
+    ],
+    "final_response": "Les commandes en attente de confirmation sont : PO052 (PendingSupplier, 2100.00€, acheteur Jean Martin) et PO053 (AwaitingCorp, 3500.00€, acheteur Lisa Wong)."
+  },
+  {
+    "question": "Historique des prix du produit 'Graphics Card'",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "name": "Graphics Card",
+      "fields": "price_history"
+    },
+    "backend_response": [
+      {"date": "2024-09-01", "price": 599.99},
+      {"date": "2024-10-01", "price": 579.99},
+      {"date": "2024-11-01", "price": 549.99}
+    ],
+    "final_response": "L'historique des prix de 'Graphics Card' : septembre 599.99€, octobre 579.99€, novembre 549.99€."
+  },
+  {
+    "question": "Modifier la description du produit 'Wireless Headset' dans PO054",
+    "entity": "product",
+    "intent": "put",
+    "query_params": {
+      "order_reference": "PO054",
+      "name": "Wireless Headset",
+      "description": "Casque sans fil haute qualité avec réduction de bruit"
+    },
+    "backend_response": {"success": true, "message": "Product description updated"},
+    "final_response": "La description du produit 'Wireless Headset' dans la commande PO054 a été mise à jour."
+  },
+  {
+    "question": "Commandes expédiées mais non reçues",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "shipped_not_received",
+      "fields": "reference,vendor,expected_arrival,tracking"
+    },
+    "backend_response": [
+      {"reference": "PO055", "vendor": "ShippedCorp", "expected_arrival": "2024-11-25", "tracking": "TRK123456"},
+      {"reference": "PO056", "vendor": "TransitSupply", "expected_arrival": "2024-11-28", "tracking": "TRK789012"}
+    ],
+    "final_response": "Les commandes expédiées mais non reçues sont : PO055 (ShippedCorp, arrivée prévue 25/11, suivi TRK123456) et PO056 (TransitSupply, arrivée prévue 28/11, suivi TRK789012)."
+  },
+  {
+    "question": "Factures avec montant supérieur à 5000€",
+    "entity": "invoice",
+    "intent": "get",
+    "query_params": {
+      "filter": "amount_gt_5000",
+      "fields": "numero,customer,tax_excluded_total,status"
+    },
+    "backend_response": [
+      {"numero": "INV-017", "customer": "BigClient", "tax_excluded_total": 7500.00, "status": "posted"},
+      {"numero": "INV-018", "customer": "MajorCorp", "tax_excluded_total": 9200.00, "status": "draft"}
+    ],
+    "final_response": "Les factures avec montant > 5000€ sont : INV-017 (BigClient, 7500.00€, posted) et INV-018 (MajorCorp, 9200.00€, draft)."
+  },
+  {
+    "question": "Ajouter un rabais de 5% à tous les produits de la commande PO057",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO057",
+      "action": "apply_discount",
+      "discount": 5.0
+    },
+    "backend_response": {"success": true, "products_updated": 8, "total_discount": 156.75},
+    "final_response": "Un rabais de 5% a été appliqué à tous les produits (8 produits) de la commande PO057, pour un total de remise de 156.75€."
+  },
+  {
+    "question": "Fournisseurs sans commande depuis 6 mois",
+    "entity": "vendor",
+    "intent": "get",
+    "query_params": {
+      "filter": "no_orders_6_months",
+      "fields": "name,last_order_date,contact"
+    },
+    "backend_response": [
+      {"name": "InactiveSupply", "last_order_date": "2024-04-15", "contact": "contact@inactive.com"},
+      {"name": "OldPartner", "last_order_date": "2024-03-20", "contact": "info@oldpartner.com"}
+    ],
+    "final_response": "Les fournisseurs sans commande depuis 6 mois sont : InactiveSupply (dernière commande 15/04, contact@inactive.com) et OldPartner (dernière commande 20/03, info@oldpartner.com)."
+  },
+  {
+    "question": "Confirmer réception partielle de la commande PO058",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO058",
+      "action": "partial_receipt",
+      "products": [
+        {"name": "Item A", "received_quantity": 5},
+        {"name": "Item B", "received_quantity": 3}
+      ]
+    },
+    "backend_response": {"success": true, "message": "Partial receipt confirmed"},
+    "final_response": "La réception partielle de la commande PO058 a été confirmée : Item A (5 unités reçues) et Item B (3 unités reçues)."
+  },
+  {
+    "question": "Budget restant pour l'acheteur Pierre Moreau",
+    "entity": "buyer",
+    "intent": "get",
+    "query_params": {
+      "name": "Pierre Moreau",
+      "metric": "remaining_budget"
+    },
+    "backend_response": 12500.50,
+    "final_response": "Le budget restant pour l'acheteur Pierre Moreau est de 12500.50€."
+  },
+  {
+    "question": "Dupliquer la commande PO059 avec nouveau fournisseur AlternativeSupply",
+    "entity": "order",
+    "intent": "post",
+    "query_params": {
+      "action": "duplicate",
+      "source_reference": "PO059",
+      "new_vendor": "AlternativeSupply"
+    },
+    "backend_response": {"new_order_reference": "PO060", "status": "created"},
+    "final_response": "La commande PO059 a été dupliquée sous la référence PO060 avec le nouveau fournisseur AlternativeSupply."
+  },
+  {
+    "question": "Exporter toutes les commandes du mois de novembre en CSV",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "date_range": "2024-11-01,2024-11-30",
+      "export_format": "csv",
+      "fields": "all"
+    },
+    "backend_response": {"export_url": "/exports/orders_nov_2024.csv", "record_count": 127},
+    "final_response": "L'export CSV des 127 commandes de novembre 2024 est disponible au téléchargement à l'adresse /exports/orders_nov_2024.csv."
+  },
+  {
+    "question": "Alertes de stock critique pour les produits commandés",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "filter": "critical_stock_alert",
+      "fields": "name,current_stock,minimum_stock,last_order"
+    },
+    "backend_response": [
+      {"name": "Essential Component", "current_stock": 2, "minimum_stock": 10, "last_order": "PO045"},
+      {"name": "Critical Part", "current_stock": 1, "minimum_stock": 5, "last_order": "PO032"}
+    ],
+    "final_response": "Alertes de stock critique : Essential Component (stock: 2, minimum: 10, dernière commande: PO045) et Critical Part (stock: 1, minimum: 5, dernière commande: PO032)."
+  },
+  {
+    "question": "Planifier livraison de la commande PO061 pour le 20 décembre 2024",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "reference": "PO061",
+      "action": "schedule_delivery",
+      "delivery_date": "2024-12-20"
+    },
+    "backend_response": {"success": true, "delivery_scheduled": true},
+    "final_response": "La livraison de la commande PO061 a été planifiée pour le 20 décembre 2024."
+  },
+  {
+    "question": "Commandes nécessitant approbation budgétaire",
+    "entity": "order",
+    "intent": "get",
+    "query_params": {
+      "filter": "pending_budget_approval",
+      "fields": "reference,vendor,total,buyer,approval_level"
+    },
+    "backend_response": [
+      {"reference": "PO062", "vendor": "ExpensiveCorp", "total": 15000.00, "buyer": "Manager A", "approval_level": "Director"},
+      {"reference": "PO063", "vendor": "HighEndSupply", "total": 22000.00, "buyer": "Manager B", "approval_level": "CEO"}
+    ],
+    "final_response": "Les commandes nécessitant approbation budgétaire sont : PO062 (ExpensiveCorp, 15000.00€, approbation Directeur) et PO063 (HighEndSupply, 22000.00€, approbation CEO)."
+  },
+  {
+    "question": "Génerer rapport de performance fournisseur pour Q4 2024",
+    "entity": "report",
+    "intent": "post",
+    "query_params": {
+      "type": "vendor_performance",
+      "period": "Q4_2024",
+      "metrics": ["delivery_time", "quality_score", "price_competitiveness"]
+    },
+    "backend_response": {"report_id": "RPT-2024-Q4-001", "status": "generating"},
+    "final_response": "Le rapport de performance fournisseur Q4 2024 est en cours de génération (ID: RPT-2024-Q4-001)."
+  },
+  {
+    "question": "Archiver toutes les commandes annulées de 2023",
+    "entity": "order",
+    "intent": "put",
+    "query_params": {
+      "filter": "cancelled_2023",
+      "action": "archive"
+    },
+    "backend_response": {"success": true, "archived_count": 45},
+    "final_response": "45 commandes annulées de 2023 ont été archivées avec succès."
+  },
+  {
+    "question": "Validation de la conformité des produits dans PO064",
+    "entity": "product",
+    "intent": "get",
+    "query_params": {
+      "order_reference": "PO064",
+      "fields": "name,compliance_status,certifications"
+    },
+    "backend_response": [
+      {"name": "Medical Device", "compliance_status": "validated", "certifications": ["CE", "FDA"]},
+      {"name": "Electronic Component", "compliance_status": "pending", "certifications": ["RoHS"]}
+    ],
+    "final_response": "Conformité des produits PO064 : Medical Device (validé, certifications CE/FDA) et Electronic Component (en attente, certification RoHS)."
+  },
+    {
+        "question": "Quelle est la priorité de la commande PO100 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO100",
+            "fields": "priority"
+        },
+        "backend_response": "high",
+        "final_response": "La priorité de la commande PO100 est 'high'."
+    },
+    {
+        "question": "Créer une nouvelle commande pour le fournisseur TechSolutions avec les produits Laptop et Mouse",
+        "entity": "order",
+        "intent": "post",
+        "query_params": {
+            "vendor": "TechSolutions",
+            "products": ["Laptop", "Mouse"]
+        },
+        "backend_response": {
+            "id": "PO101",
+            "status": "created",
+            "vendor": "TechSolutions"
+        },
+        "final_response": "Une nouvelle commande PO101 a été créée pour le fournisseur TechSolutions avec les produits Laptop et Mouse."
+    },
+    {
+        "question": "Modifier la date d'échéance de la facture INV-200 au 30 mars 2025",
+        "entity": "invoice",
+        "intent": "put",
+        "query_params": {
+            "numero": "INV-200",
+            "due_date": "2025-03-30"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Due date updated"
+        },
+        "final_response": "La date d'échéance de la facture INV-200 a été modifiée au 30 mars 2025."
+    },
+    {
+        "question": "Supprimer la facture INV-150",
+        "entity": "invoice",
+        "intent": "delete",
+        "query_params": {
+            "numero": "INV-150"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Invoice deleted"
+        },
+        "final_response": "La facture INV-150 a été supprimée avec succès."
+    },
+    {
+        "question": "Quel est le fournisseur de la commande PO102 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO102",
+            "fields": "vendor"
+        },
+        "backend_response": "OfficeSupply",
+        "final_response": "Le fournisseur de la commande PO102 est OfficeSupply."
+    },
+    {
+        "question": "Commandes avec statut 'waiting to bill'",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "billing_status": "waiting to bill",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO103", "vendor": "TechCorp"},
+            {"reference": "PO104", "vendor": "SupplyPlus"}
+        ],
+        "final_response": "Les commandes avec statut 'waiting to bill' sont : PO103 (TechCorp) et PO104 (SupplyPlus)."
+    },
+    {
+        "question": "Ajouter un produit 'Keyboard' à la commande PO105 avec quantité 10",
+        "entity": "product",
+        "intent": "post",
+        "query_params": {
+            "order_reference": "PO105",
+            "name": "Keyboard",
+            "quantity": 10,
+            "unitprice": 45.0
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Product added to order"
+        },
+        "final_response": "Le produit 'Keyboard' a été ajouté à la commande PO105 avec une quantité de 10 unités à 45.00€."
+    },
+    {
+        "question": "Changer le statut de la commande PO106 en 'cancelled'",
+        "entity": "order",
+        "intent": "put",
+        "query_params": {
+            "reference": "PO106",
+            "status": "cancelled"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Order status updated"
+        },
+        "final_response": "Le statut de la commande PO106 a été modifié avec succès en 'cancelled'."
+    },
+    {
+        "question": "Quelle est la date de confirmation de la commande PO107 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO107",
+            "fields": "confirmation_date"
+        },
+        "backend_response": "2024-12-01",
+        "final_response": "La date de confirmation de la commande PO107 est le 1 décembre 2024."
+    },
+    {
+        "question": "Factures avec statut 'draft'",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "status": "draft",
+            "fields": "numero"
+        },
+        "backend_response": [
+            {"numero": "INV-201", "customer": "ClientA"},
+            {"numero": "INV-202", "customer": "ClientB"}
+        ],
+        "final_response": "Les factures avec statut 'draft' sont : INV-201 (ClientA) et INV-202 (ClientB)."
+    },
+    {
+        "question": "Modifier le prix unitaire du produit 'Monitor' à 250.00",
+        "entity": "product",
+        "intent": "put",
+        "query_params": {
+            "name": "Monitor",
+            "unitprice": 250.0
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Product price updated"
+        },
+        "final_response": "Le prix unitaire du produit 'Monitor' a été modifié à 250.00€."
+    },
+    {
+        "question": "Quel est le montant total TTC de la commande PO108 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO108",
+            "fields": "total"
+        },
+        "backend_response": 1250.75,
+        "final_response": "Le montant total TTC de la commande PO108 est 1250.75€."
+    },
+    {
+        "question": "Créer une activité de type email pour la commande PO109",
+        "entity": "order",
+        "intent": "post",
+        "query_params": {
+            "reference": "PO109",
+            "activity_type": "email",
+            "description": "Confirmation de commande"
+        },
+        "backend_response": {
+            "success": true,
+            "activity_id": "ACT-003"
+        },
+        "final_response": "Une activité email 'Confirmation de commande' a été créée pour la commande PO109 (ID: ACT-003)."
+    },
+    {
+        "question": "Quels sont les produits de la commande PO110 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO110",
+            "fields": "products"
+        },
+        "backend_response": [
+            {"name": "Laptop", "quantity": 2, "unitprice": 899.99},
+            {"name": "Mouse", "quantity": 5, "unitprice": 25.0}
+        ],
+        "final_response": "Les produits de la commande PO110 sont : Laptop (2 unités à 899.99€) et Mouse (5 unités à 25.00€)."
+    },
+    {
+        "question": "Archiver la commande PO111",
+        "entity": "order",
+        "intent": "put",
+        "query_params": {
+            "reference": "PO111",
+            "action": "archive"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Order archived"
+        },
+        "final_response": "La commande PO111 a été archivée avec succès."
+    },
+    {
+        "question": "Quel est le document source de la commande PO112 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO112",
+            "fields": "source_document"
+        },
+        "backend_response": "RFQ-2024-100",
+        "final_response": "Le document source de la commande PO112 est RFQ-2024-100."
+    },
+    {
+        "question": "Commandes avec acheteur 'Jean Dupont'",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "buyer": "Jean Dupont",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO113", "vendor": "TechSolutions"},
+            {"reference": "PO114", "vendor": "OfficeSupply"}
+        ],
+        "final_response": "Les commandes de l'acheteur Jean Dupont sont : PO113 (TechSolutions) et PO114 (OfficeSupply)."
+    },
+    {
+        "question": "Modifier la date d'arrivée prévue de PO115 au 15 janvier 2025",
+        "entity": "order",
+        "intent": "put",
+        "query_params": {
+            "reference": "PO115",
+            "expected_arrival": "2025-01-15"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Expected arrival date updated"
+        },
+        "final_response": "La date d'arrivée prévue de la commande PO115 a été mise à jour au 15 janvier 2025."
+    },
+    {
+        "question": "Quel est le statut de paiement de la facture INV-203 ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "numero": "INV-203",
+            "fields": "payment_status"
+        },
+        "backend_response": "not paid",
+        "final_response": "Le statut de paiement de la facture INV-203 est 'not paid'."
+    },
+    {
+        "question": "Créer une demande de prix pour 'Office Chairs' chez FurniturePlus",
+        "entity": "rfq",
+        "intent": "post",
+        "query_params": {
+            "vendor": "FurniturePlus",
+            "products": "Office Chairs",
+            "deadline": "2024-12-20"
+        },
+        "backend_response": {
+            "rfq_reference": "RFQ-2024-101",
+            "status": "created"
+        },
+        "final_response": "La demande de prix RFQ-2024-101 a été créée pour 'Office Chairs' chez FurniturePlus avec échéance au 20 décembre 2024."
+    },
+    {
+        "question": "Quelle est la référence fournisseur de la commande PO116 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO116",
+            "fields": "vendor_reference"
+        },
+        "backend_response": "SUPP-REF-2024-100",
+        "final_response": "La référence fournisseur de la commande PO116 est SUPP-REF-2024-100."
+    },
+    {
+        "question": "Modifier les conditions de paiement de PO117 à '30 jours'",
+        "entity": "order",
+        "intent": "put",
+        "query_params": {
+            "reference": "PO117",
+            "payment_terms": "30 jours"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Payment terms updated"
+        },
+        "final_response": "Les conditions de paiement de la commande PO117 ont été modifiées à '30 jours'."
+    },
+    {
+        "question": "Quel est le montant hors taxes de la commande PO118 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO118",
+            "fields": "untaxed"
+        },
+        "backend_response": 1800.0,
+        "final_response": "Le montant hors taxes de la commande PO118 est 1800.00€."
+    },
+    {
+        "question": "Commandes avec priorité 'urgent'",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "priority": "urgent",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO119", "vendor": "FastDelivery"},
+            {"reference": "PO120", "vendor": "ExpressSupply"}
+        ],
+        "final_response": "Les commandes avec priorité 'urgent' sont : PO119 (FastDelivery) et PO120 (ExpressSupply)."
+    },
+    {
+        "question": "Ajouter une remise de 10% sur le produit 'Desk' dans la commande PO121",
+        "entity": "product",
+        "intent": "put",
+        "query_params": {
+            "order_reference": "PO121",
+            "name": "Desk",
+            "discount": 10.0
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Discount applied"
+        },
+        "final_response": "Une remise de 10% a été appliquée sur le produit 'Desk' dans la commande PO121."
+    },
+    {
+        "question": "Quelle est la position fiscale de la commande PO122 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO122",
+            "fields": "fiscal_position"
+        },
+        "backend_response": "Export",
+        "final_response": "La position fiscale de la commande PO122 est 'Export'."
+    },
+    {
+        "question": "Confirmer la réception complète de la commande PO123",
+        "entity": "order",
+        "intent": "put",
+        "query_params": {
+            "reference": "PO123",
+            "action": "complete_receipt"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Complete receipt confirmed"
+        },
+        "final_response": "La réception complète de la commande PO123 a été confirmée."
+    },
+    {
+        "question": "Produits avec stock critique",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "critical_stock",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "Processor", "current_stock": 3, "minimum_stock": 10},
+            {"name": "Memory", "current_stock": 2, "minimum_stock": 5}
+        ],
+        "final_response": "Les produits avec stock critique sont : Processor (stock: 3, minimum: 10) et Memory (stock: 2, minimum: 5)."
+    },
+    {
+        "question": "Quel est le délai moyen d'achat ?",
+        "entity": "analytics",
+        "intent": "get",
+        "query_params": {
+            "metric": "lead_time_purchase"
+        },
+        "backend_response": 14.5,
+        "final_response": "Le délai moyen d'achat est de 14.5 jours."
+    },
+    {
+        "question": "Modifier le fournisseur de la commande PO124 à NewTech",
+        "entity": "order",
+        "intent": "put",
+        "query_params": {
+            "reference": "PO124",
+            "vendor": "NewTech"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Vendor updated"
+        },
+        "final_response": "Le fournisseur de la commande PO124 a été changé pour NewTech."
+    },
+    {
+        "question": "Quel est le numéro client de la facture INV-204 ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "numero": "INV-204",
+            "fields": "customer"
+        },
+        "backend_response": "CLIENT-2024-100",
+        "final_response": "Le numéro client de la facture INV-204 est CLIENT-2024-100."
+    },
+    {
+        "question": "Commandes avec document source RFQ-2024-102",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "source_document": "RFQ-2024-102",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO125", "vendor": "TechSolutions"}
+        ],
+        "final_response": "La commande avec document source RFQ-2024-102 est : PO125 (TechSolutions)."
+    },
+    {
+        "question": "Quelle est la date d'échéance de la facture INV-205 ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "numero": "INV-205",
+            "fields": "due_date"
+        },
+        "backend_response": "2025-01-31",
+        "final_response": "La date d'échéance de la facture INV-205 est le 31 janvier 2025."
+    },
+    {
+        "question": "Marquer la facture INV-206 comme payée",
+        "entity": "invoice",
+        "intent": "put",
+        "query_params": {
+            "numero": "INV-206",
+            "payment_status": "paid"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Payment status updated"
+        },
+        "final_response": "La facture INV-206 a été marquée comme payée."
+    },
+    {
+        "question": "Quels sont les produits jamais commandés ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "never_ordered",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "Special Tool", "unitprice": 150.0},
+            {"name": "Rare Part", "unitprice": 200.0}
+        ],
+        "final_response": "Les produits jamais commandés sont : Special Tool (150.00€) et Rare Part (200.00€)."
+    },
+    {
+        "question": "Créer une facture pour la commande PO126",
+        "entity": "invoice",
+        "intent": "post",
+        "query_params": {
+            "order_reference": "PO126"
+        },
+        "backend_response": {
+            "invoice_number": "INV-207",
+            "status": "created"
+        },
+        "final_response": "La facture INV-207 a été créée pour la commande PO126."
+    },
+    {
+        "question": "Quel est le montant total acheté les 7 derniers jours ?",
+        "entity": "analytics",
+        "intent": "get",
+        "query_params": {
+            "metric": "purchased_amount",
+            "period": "last_7_days"
+        },
+        "backend_response": 22500.0,
+        "final_response": "Le montant total acheté les 7 derniers jours est 22500.00€."
+    },
+    {
+        "question": "Modifier la description du produit 'Keyboard' dans la commande PO127",
+        "entity": "product",
+        "intent": "put",
+        "query_params": {
+            "order_reference": "PO127",
+            "name": "Keyboard",
+            "description": "Clavier mécanique RGB"
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Product description updated"
+        },
+        "final_response": "La description du produit 'Keyboard' dans la commande PO127 a été mise à jour."
+    },
+    {
+        "question": "Quel est le statut de la commande PO128 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO128",
+            "fields": "status"
+        },
+        "backend_response": "purchase order",
+        "final_response": "Le statut de la commande PO128 est 'purchase order'."
+    },
+    {
+        "question": "Exporter les commandes du mois de décembre 2024 en CSV",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "date_range": "2024-12-01,2024-12-31",
+            "export_format": "csv",
+            "fields": "all"
+        },
+        "backend_response": {
+            "export_url": "/exports/orders_dec_2024.csv",
+            "record_count": 85
+        },
+        "final_response": "L'export CSV des 85 commandes de décembre 2024 est disponible au téléchargement à l'adresse /exports/orders_dec_2024.csv."
+    },
+    {
+        "question": "Quel est l'acheteur de la commande PO129 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO129",
+            "fields": "buyer"
+        },
+        "backend_response": "Marie Martin",
+        "final_response": "L'acheteur de la commande PO129 est Marie Martin."
+    },
+    {
+        "question": "Commandes confirmées cette semaine",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "confirmed_this_week",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO130", "vendor": "QuickSupplier"},
+            {"reference": "PO131", "vendor": "FastCorp"}
+        ],
+        "final_response": "Les commandes confirmées cette semaine sont : PO130 (QuickSupplier) et PO131 (FastCorp)."
+    },
+    {
+        "question": "Quelle est la valeur moyenne des commandes des 7 derniers jours ?",
+        "entity": "analytics",
+        "intent": "get",
+        "query_params": {
+            "metric": "avg_order_value",
+            "period": "last_7_days"
+        },
+        "backend_response": 1850.75,
+        "final_response": "La valeur moyenne des commandes des 7 derniers jours est 1850.75€."
+    },
+    {
+        "question": "Combien de demandes de prix ont été envoyées les 7 derniers jours ?",
+        "entity": "analytics",
+        "intent": "get",
+        "query_params": {
+            "metric": "rfqs_sent",
+            "period": "last_7_days"
+        },
+        "backend_response": 12,
+        "final_response": "12 demandes de prix ont été envoyées les 7 derniers jours."
+    },
+    {
+        "question": "Quels sont les produits de la commande PO132 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO132",
+            "fields": "products"
+        },
+        "backend_response": 404,
+        "final_response": "Erreur : La commande PO132 n'existe pas dans le système."
+    },
+    {
+        "question": "Modifier le statut de la facture INV-208 en 'posted'",
+        "entity": "invoice",
+        "intent": "put",
+        "query_params": {
+            "numero": "INV-208",
+            "status": "posted"
+        },
+        "backend_response": 403,
+        "final_response": "Erreur : Accès non autorisé à la facture INV-208. Vérifiez vos permissions."
+    },
+    {
+        "question": "Quel est le montant des taxes pour le produit 'Chair' ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "name": "Chair",
+            "fields": "taxes"
+        },
+        "backend_response": 35.5,
+        "final_response": "Le montant des taxes pour le produit 'Chair' est 35.50€."
+    },
+    {
+        "question": "Commandes nécessitant approbation budgétaire",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "pending_budget_approval",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO133", "vendor": "ExpensiveCorp", "total": 15000.0},
+            {"reference": "PO134", "vendor": "LuxurySupply", "total": 22000.0}
+        ],
+        "final_response": "Les commandes nécessitant approbation budgétaire sont : PO133 (ExpensiveCorp, 15000.00€) et PO134 (LuxurySupply, 22000.00€)."
+    },
+    {
+        "question": "Dupliquer la commande PO135 avec le nouveau fournisseur AlternativeTech",
+        "entity": "order",
+        "intent": "post",
+        "query_params": {
+            "action": "duplicate",
+            "source_reference": "PO135",
+            "new_vendor": "AlternativeTech"
+        },
+        "backend_response": {
+            "new_order_reference": "PO136",
+            "status": "created"
+        },
+        "final_response": "La commande PO135 a été dupliquée sous la référence PO136 avec le nouveau fournisseur AlternativeTech."
+    },
+    {
+        "question": "Quels sont les produits avec taxes incluses dans la commande PO137 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO137",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "Laptop Pro", "taxes_incl": true},
+            {"name": "External Drive", "taxes_incl": false}
+        ],
+        "final_response": "Dans la commande PO137 : Laptop Pro (taxes incluses) et External Drive (taxes exclues)."
+    },
+    {
+        "question": "Générer un rapport de performance fournisseur pour Q1 2025",
+        "entity": "report",
+        "intent": "post",
+        "query_params": {
+            "type": "vendor_performance",
+            "period": "Q1_2025",
+            "metrics": ["delivery_time", "quality_score"]
+        },
+        "backend_response": {
+            "report_id": "RPT-2025-Q1-001",
+            "status": "generating"
+        },
+        "final_response": "Le rapport de performance fournisseur Q1 2025 est en cours de génération (ID: RPT-2025-Q1-001)."
+    },
+    {
+        "question": "Quelle est la quantité reçue du produit 'Monitor' dans la commande PO138 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO138",
+            "name": "Monitor",
+            "fields": "received"
+        },
+        "backend_response": 3,
+        "final_response": "La quantité reçue du produit 'Monitor' dans la commande PO138 est 3 unités."
+    },
+    {
+        "question": "Modifier la quantité du produit 'Mouse' dans la commande PO139 à 8",
+        "entity": "product",
+        "intent": "put",
+        "query_params": {
+            "order_reference": "PO139",
+            "name": "Mouse",
+            "quantity": 8
+        },
+        "backend_response": {
+            "success": true,
+            "message": "Product quantity updated"
+        },
+        "final_response": "La quantité du produit 'Mouse' dans la commande PO139 a été mise à jour à 8 unités."
+    },
+    {
+        "question": "Quels sont les produits avec remise supérieure à 15% dans PO140 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO140",
+            "filter": "discount_gt_15",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "Bulk Item", "discount": 20.0},
+            {"name": "Clearance Product", "discount": 25.0}
+        ],
+        "final_response": "Les produits avec remise > 15% dans PO140 sont : Bulk Item (20% de remise) et Clearance Product (25% de remise)."
+    },
+    {
+        "question": "Planifier la livraison de la commande PO141 pour le 10 février 2025",
+        "entity": "order",
+        "intent": "put",
+        "query_params": {
+            "reference": "PO141",
+            "action": "schedule_delivery",
+            "delivery_date": "2025-02-10"
+        },
+        "backend_response": {
+            "success": true,
+            "delivery_scheduled": true
+        },
+        "final_response": "La livraison de la commande PO141 a été planifiée pour le 10 février 2025."
+    },
+    {
+        "question": "Quelle est la remise appliquée sur le produit 'Desk' dans PO142 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO142",
+            "name": "Desk",
+            "fields": "discount"
+        },
+        "backend_response": 10.5,
+        "final_response": "La remise appliquée sur le produit 'Desk' dans la commande PO142 est de 10.5%."
+    },
+    {
+        "question": "Quel est le total avec taxes du produit 'Chair' dans PO143 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO143",
+            "name": "Chair",
+            "fields": "tax_total"
+        },
+        "backend_response": 120.0,
+        "final_response": "Le total avec taxes du produit 'Chair' dans la commande PO143 est 120.00€."
+    },
+    {
+        "question": "Commandes avec position fiscale 'National'",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "fiscal_position": "National",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO144", "vendor": "LocalSupplier"},
+            {"reference": "PO145", "vendor": "DomesticCorp"}
+        ],
+        "final_response": "Les commandes avec position fiscale 'National' sont : PO144 (LocalSupplier) et PO145 (DomesticCorp)."
+    },
+    {
+        "question": "Quel est le montant hors taxes du produit 'Table' dans PO146 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO146",
+            "name": "Table",
+            "fields": "untaxed_amount"
+        },
+        "backend_response": 350.0,
+        "final_response": "Le montant hors taxes du produit 'Table' dans la commande PO146 est 350.00€."
+    },
+    {
+        "question": "Quels sont les produits en rupture de stock ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "out_of_stock",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "Special Component", "last_ordered": "2024-10-20"},
+            {"name": "Rare Material", "last_ordered": "2024-09-15"}
+        ],
+        "final_response": "Les produits en rupture de stock sont : Special Component (dernière commande 20/10) et Rare Material (dernière commande 15/09)."
+    },
+    {
+        "question": "Quels sont les fournisseurs avec plus de 10 commandes ce mois ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "filter": "order_count_gt_10",
+            "period": "current_month"
+        },
+        "backend_response": [
+            {"name": "MainSupplier", "order_count": 15},
+            {"name": "PrimaryVendor", "order_count": 12}
+        ],
+        "final_response": "Les fournisseurs avec plus de 10 commandes ce mois sont : MainSupplier (15 commandes) et PrimaryVendor (12 commandes)."
+    },
+    {
+        "question": "Quels sont les fournisseurs sans commande depuis 3 mois ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "filter": "no_orders_3_months",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "OldSupplier", "last_order_date": "2024-09-01"},
+            {"name": "InactiveCorp", "last_order_date": "2024-08-15"}
+        ],
+        "final_response": "Les fournisseurs sans commande depuis 3 mois sont : OldSupplier (dernière commande 01/09) et InactiveCorp (dernière commande 15/08)."
+    },
+    {
+        "question": "Quel est le top 3 des fournisseurs par volume d'achat ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "filter": "top_3_by_volume",
+            "fields": "total_amount"
+        },
+        "backend_response": [
+            {"name": "TopSupplier", "total_amount": 150000.0},
+            {"name": "MajorVendor", "total_amount": 120000.0},
+            {"name": "KeyPartner", "total_amount": 95000.0}
+        ],
+        "final_response": "Le top 3 des fournisseurs par volume sont : TopSupplier (150000.00€), MajorVendor (120000.00€) et KeyPartner (95000.00€)."
+    },
+    {
+        "question": "Quelle est la moyenne des délais de livraison du fournisseur FastDelivery ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "name": "FastDelivery",
+            "metric": "average_delivery_time"
+        },
+        "backend_response": 5.5,
+        "final_response": "La moyenne des délais de livraison du fournisseur FastDelivery est de 5.5 jours."
+    },
+    {
+        "question": "Quels sont les produits les plus commandés ce trimestre ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_ordered_this_quarter",
+            "fields": "order_count"
+        },
+        "backend_response": [
+            {"name": "Standard Laptop", "order_count": 45},
+            {"name": "Office Chair", "order_count": 38},
+            {"name": "Wireless Mouse", "order_count": 32}
+        ],
+        "final_response": "Les produits les plus commandés ce trimestre sont : Standard Laptop (45 commandes), Office Chair (38 commandes) et Wireless Mouse (32 commandes)."
+    },
+    {
+        "question": "Quel est le budget restant pour l'acheteur Sophie Martin ?",
+        "entity": "buyer",
+        "intent": "get",
+        "query_params": {
+            "name": "Sophie Martin",
+            "metric": "remaining_budget"
+        },
+        "backend_response": 8500.0,
+        "final_response": "Le budget restant pour l'acheteur Sophie Martin est de 8500.00€."
+    },
+    {
+        "question": "Quelles sont les activités de la commande PO147 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO147",
+            "fields": "activities"
+        },
+        "backend_response": [
+            {"type": "email", "date": "2024-12-01", "description": "Confirmation envoyée"},
+            {"type": "call", "date": "2024-12-03", "description": "Suivi livraison"}
+        ],
+        "final_response": "Les activités de la commande PO147 sont : Email envoyé le 01/12 (Confirmation envoyée) et Appel le 03/12 (Suivi livraison)."
+    },
+    {
+        "question": "Quelles sont les activités de la facture INV-209 ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "numero": "INV-209",
+            "fields": "activities"
+        },
+        "backend_response": [
+            {"type": "email", "date": "2024-12-05", "description": "Facture envoyée"},
+            {"type": "call", "date": "2024-12-10", "description": "Relance paiement"}
+        ],
+        "final_response": "Les activités de la facture INV-209 sont : Email envoyé le 05/12 (Facture envoyée) et Appel le 10/12 (Relance paiement)."
+    },
+    {
+        "question": "Quelles sont mes demandes de prix en attente ?",
+        "entity": "rfq",
+        "intent": "get",
+        "query_params": {
+            "status": "waiting",
+            "scope": "my"
+        },
+        "backend_response": [
+            {"reference": "RFQ-103", "vendor": "TechSolutions"},
+            {"reference": "RFQ-104", "vendor": "OfficeSupply"}
+        ],
+        "final_response": "Vos demandes de prix en attente sont : RFQ-103 (TechSolutions) et RFQ-104 (OfficeSupply)."
+    },
+    {
+        "question": "Quelles sont toutes les demandes de prix à envoyer ?",
+        "entity": "rfq",
+        "intent": "get",
+        "query_params": {
+            "status": "to_send",
+            "scope": "all"
+        },
+        "backend_response": [
+            {"reference": "RFQ-105", "vendor": "SupplierA"},
+            {"reference": "RFQ-106", "vendor": "SupplierB"}
+        ],
+        "final_response": "Les demandes de prix à envoyer sont : RFQ-105 (SupplierA) et RFQ-106 (SupplierB)."
+    },
+    {
+        "question": "Quelles sont les demandes de prix en retard ?",
+        "entity": "rfq",
+        "intent": "get",
+        "query_params": {
+            "status": "late",
+            "scope": "all"
+        },
+        "backend_response": [
+            {"reference": "RFQ-107", "vendor": "LateSupplier", "due_date": "2024-12-01"}
+        ],
+        "final_response": "La demande de prix en retard est : RFQ-107 (LateSupplier, échéance 01/12)."
+    },
+    {
+        "question": "Envoyer la demande de prix RFQ-108",
+        "entity": "rfq",
+        "intent": "put",
+        "query_params": {
+            "reference": "RFQ-108",
+            "action": "send"
+        },
+        "backend_response": {
+            "success": true,
+            "sent_date": "2024-12-15"
+        },
+        "final_response": "La demande de prix RFQ-108 a été envoyée avec succès le 15 décembre 2024."
+    },
+    {
+        "question": "Quel est le statut de la demande de prix RFQ-109 ?",
+        "entity": "rfq",
+        "intent": "get",
+        "query_params": {
+            "reference": "RFQ-109",
+            "fields": "status"
+        },
+        "backend_response": "waiting",
+        "final_response": "Le statut de la demande de prix RFQ-109 est 'waiting'."
+    },
+    {
+        "question": "Créer une demande de prix pour 'Network Equipment' chez NetCorp",
+        "entity": "rfq",
+        "intent": "post",
+        "query_params": {
+            "vendor": "NetCorp",
+            "products": "Network Equipment",
+            "deadline": "2025-01-15"
+        },
+        "backend_response": {
+            "rfq_reference": "RFQ-2024-110",
+            "status": "created"
+        },
+        "final_response": "La demande de prix RFQ-2024-110 a été créée pour 'Network Equipment' chez NetCorp avec échéance au 15 janvier 2025."
+    },
+    {
+        "question": "Quelles sont les commandes avec un montant supérieur à 10000€ ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "amount_gt_10000",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO148", "total": 15000.0},
+            {"reference": "PO149", "total": 12000.0}
+        ],
+        "final_response": "Les commandes avec un montant > 10000€ sont : PO148 (15000.00€) et PO149 (12000.00€)."
+    },
+    {
+        "question": "Quelles sont les factures avec un montant supérieur à 5000€ ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "filter": "amount_gt_5000",
+            "fields": "numero"
+        },
+        "backend_response": [
+            {"numero": "INV-210", "total": 7500.0},
+            {"numero": "INV-211", "total": 6000.0}
+        ],
+        "final_response": "Les factures avec un montant > 5000€ sont : INV-210 (7500.00€) et INV-211 (6000.00€)."
+    },
+    {
+        "question": "Quelles sont les commandes en retard de livraison ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "late_delivery",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO150", "expected_arrival": "2024-12-01"},
+            {"reference": "PO151", "expected_arrival": "2024-12-05"}
+        ],
+        "final_response": "Les commandes en retard de livraison sont : PO150 (prévue le 01/12) et PO151 (prévue le 05/12)."
+    },
+    {
+        "question": "Quelles sont les commandes confirmées ce mois ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "confirmed_this_month",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO152", "confirmation_date": "2024-12-10"},
+            {"reference": "PO153", "confirmation_date": "2024-12-15"}
+        ],
+        "final_response": "Les commandes confirmées ce mois sont : PO152 (confirmée le 10/12) et PO153 (confirmée le 15/12)."
+    },
+    {
+        "question": "Quelles sont les commandes n'ayant pas de document source ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "no_source_document",
+            "fields": "reference"
+        },
+        "backend_response": [
+            {"reference": "PO154", "vendor": "DirectSupplier"},
+            {"reference": "PO155", "vendor": "QuickOrder"}
+        ],
+        "final_response": "Les commandes n'ayant pas de document source sont : PO154 (DirectSupplier) et PO155 (QuickOrder)."
+    },
+    {
+        "question": "Quels sont les produits avec une conformité validée dans PO156 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO156",
+            "filter": "compliance_validated",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "Medical Device", "compliance_status": "validated"},
+            {"name": "Safety Equipment", "compliance_status": "validated"}
+        ],
+        "final_response": "Les produits avec conformité validée dans PO156 sont : Medical Device et Safety Equipment."
+    },
+    {
+        "question": "Quels sont les produits avec taxes exclues dans PO157 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO157",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "Industrial Tool", "taxes_excl": true},
+            {"name": "Raw Material", "taxes_excl": true}
+        ],
+        "final_response": "Dans la commande PO157 : Industrial Tool et Raw Material (taxes exclues)."
+    },
+    {
+        "question": "Quel est l'historique des prix du produit 'SSD' ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "name": "SSD",
+            "fields": "price_history"
+        },
+        "backend_response": [
+            {"date": "2024-09-01", "price": 120.0},
+            {"date": "2024-10-01", "price": 110.0},
+            {"date": "2024-11-01", "price": 100.0}
+        ],
+        "final_response": "L'historique des prix de 'SSD' : septembre 120.00€, octobre 110.00€, novembre 100.00€."
+    },
+    {
+        "question": "Quel est le montant facturé pour le produit 'Printer' dans PO158 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO158",
+            "name": "Printer",
+            "fields": "billed"
+        },
+        "backend_response": 299.99,
+        "final_response": "Le montant facturé pour le produit 'Printer' dans la commande PO158 est 299.99€."
+    },
+    {
+        "question": "Quelle est la quantité commandée du produit 'Monitor' dans PO159 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO159",
+            "name": "Monitor",
+            "fields": "quantity"
+        },
+        "backend_response": 5,
+        "final_response": "La quantité commandée du produit 'Monitor' dans la commande PO159 est 5 unités."
+    },
+    {
+        "question": "Quel est le prix unitaire du produit 'Keyboard' dans PO160 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO160",
+            "name": "Keyboard",
+            "fields": "unitprice"
+        },
+        "backend_response": 45.0,
+        "final_response": "Le prix unitaire du produit 'Keyboard' dans la commande PO160 est 45.00€."
+    },
+    {
+        "question": "Quelle est la description du produit 'Chair' dans PO161 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO161",
+            "name": "Chair",
+            "fields": "description"
+        },
+        "backend_response": "Chaise de bureau ergonomique avec accoudoirs",
+        "final_response": "La description du produit 'Chair' dans la commande PO161 est : Chaise de bureau ergonomique avec accoudoirs."
+    },
+    {
+        "question": "Quels sont les produits avec une remise dans PO162 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO162",
+            "filter": "has_discount",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "Bulk Item", "discount": 15.0},
+            {"name": "Clearance Product", "discount": 20.0}
+        ],
+        "final_response": "Les produits avec remise dans PO162 sont : Bulk Item (15% de remise) et Clearance Product (20% de remise)."
+    },
+    {
+        "question": "Quels sont les produits avec certification CE dans PO163 ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "order_reference": "PO163",
+            "filter": "has_certification_CE",
+            "fields": "name"
+        },
+        "backend_response": [
+            {"name": "Medical Device", "certifications": ["CE"]},
+            {"name": "Safety Equipment", "certifications": ["CE"]}
+        ],
+        "final_response": "Les produits avec certification CE dans PO163 sont : Medical Device et Safety Equipment."
+    },
+    {
+        "question": "Quelle est la position fiscale de la commande PO164 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO164",
+            "fields": "fiscal_position"
+        },
+        "backend_response": "Export",
+        "final_response": "La position fiscale de la commande PO164 est 'Export'."
+    },
+    {
+        "question": "Quelles sont les conditions de paiement de la commande PO165 ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "reference": "PO165",
+            "fields": "payment_terms"
+        },
+        "backend_response": "60 jours fin de mois",
+        "final_response": "Les conditions de paiement de la commande PO165 sont : 60 jours fin de mois."
+    },
+    {
+        "question": "Quel est le budget total de l'acheteur Pierre Moreau ?",
+        "entity": "buyer",
+        "intent": "get",
+        "query_params": {
+            "name": "Pierre Moreau",
+            "metric": "total_budget"
+        },
+        "backend_response": 50000.0,
+        "final_response": "Le budget total de l'acheteur Pierre Moreau est de 50000.00€."
+    },
+    {
+        "question": "Quel est le montant dépensé par l'acheteur Marie Dupont ce trimestre ?",
+        "entity": "buyer",
+        "intent": "get",
+        "query_params": {
+            "name": "Marie Dupont",
+            "metric": "spent_this_quarter"
+        },
+        "backend_response": 12500.0,
+        "final_response": "Le montant dépensé par l'acheteur Marie Dupont ce trimestre est de 12500.00€."
+    },
+    {
+        "question": "Quel est le nombre de commandes passées par l'acheteur Jean Martin ce mois ?",
+        "entity": "buyer",
+        "intent": "get",
+        "query_params": {
+            "name": "Jean Martin",
+            "metric": "order_count_this_month"
+        },
+        "backend_response": 8,
+        "final_response": "L'acheteur Jean Martin a passé 8 commandes ce mois."
+    },
+    {
+        "question": "Quel est le fournisseur avec le meilleur score de qualité ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "metric": "best_quality_score",
+            "fields": "name"
+        },
+        "backend_response": {"name": "QualitySupplier", "quality_score": 9.8},
+        "final_response": "Le fournisseur avec le meilleur score de qualité est QualitySupplier (score: 9.8/10)."
+    },
+    {
+        "question": "Quel est le fournisseur avec le délai de livraison le plus court ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "metric": "fastest_delivery",
+            "fields": "name"
+        },
+        "backend_response": {"name": "SpeedyDelivery", "avg_delivery_time": 3.5},
+        "final_response": "Le fournisseur avec le délai de livraison le plus court est SpeedyDelivery (moyenne: 3.5 jours)."
+    },
+    {
+        "question": "Quel est le fournisseur le plus compétitif en prix ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "metric": "most_competitive_pricing",
+            "fields": "name"
+        },
+        "backend_response": {"name": "BudgetSupplier", "price_score": 9.5},
+        "final_response": "Le fournisseur le plus compétitif en prix est BudgetSupplier (score: 9.5/10)."
+    },
+    {
+        "question": "Quel est le produit le plus cher commandé ce mois ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_expensive_this_month",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Server Rack", "unitprice": 2500.0},
+        "final_response": "Le produit le plus cher commandé ce mois est 'Server Rack' (2500.00€)."
+    },
+    {
+        "question": "Quel est le produit le moins cher commandé ce mois ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "least_expensive_this_month",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Mouse Pad", "unitprice": 5.0},
+        "final_response": "Le produit le moins cher commandé ce mois est 'Mouse Pad' (5.00€)."
+    },
+    {
+        "question": "Quel est le produit avec la plus grande quantité commandée ce mois ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_quantity_this_month",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Standard Mouse", "total_quantity": 150},
+        "final_response": "Le produit avec la plus grande quantité commandée ce mois est 'Standard Mouse' (150 unités)."
+    },
+    {
+        "question": "Quel est le produit avec la plus grande remise appliquée ce mois ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_discount_this_month",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Clearance Item", "discount": 30.0},
+        "final_response": "Le produit avec la plus grande remise appliquée ce mois est 'Clearance Item' (30% de remise)."
+    },
+    {
+        "question": "Quelle est la facture la plus ancienne non payée ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "filter": "oldest_unpaid",
+            "fields": "numero"
+        },
+        "backend_response": {"numero": "INV-212", "due_date": "2024-11-01"},
+        "final_response": "La facture la plus ancienne non payée est INV-212 (échéance 01/11)."
+    },
+    {
+        "question": "Quelle est la facture avec le montant le plus élevé ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_amount",
+            "fields": "numero"
+        },
+        "backend_response": {"numero": "INV-213", "total": 10000.0},
+        "final_response": "La facture avec le montant le plus élevé est INV-213 (10000.00€)."
+    },
+    {
+        "question": "Quelle est la facture avec le montant le plus faible ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "filter": "lowest_amount",
+            "fields": "numero"
+        },
+        "backend_response": {"numero": "INV-214", "total": 150.0},
+        "final_response": "La facture avec le montant le plus faible est INV-214 (150.00€)."
+    },
+    {
+        "question": "Quelle est la commande avec le délai de livraison le plus long ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "longest_delivery_time",
+            "fields": "reference"
+        },
+        "backend_response": {"reference": "PO166", "delivery_time": 30},
+        "final_response": "La commande avec le délai de livraison le plus long est PO166 (30 jours)."
+    },
+    {
+        "question": "Quelle est la commande avec le délai de livraison le plus court ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "shortest_delivery_time",
+            "fields": "reference"
+        },
+        "backend_response": {"reference": "PO167", "delivery_time": 2},
+        "final_response": "La commande avec le délai de livraison le plus court est PO167 (2 jours)."
+    },
+    {
+        "question": "Quelle est la commande avec le plus grand nombre de produits différents ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_unique_products",
+            "fields": "reference"
+        },
+        "backend_response": {"reference": "PO168", "unique_products": 15},
+        "final_response": "La commande avec le plus grand nombre de produits différents est PO168 (15 produits uniques)."
+    },
+    {
+        "question": "Quelle est la commande avec la plus grande quantité totale ?",
+        "entity": "order",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_total_quantity",
+            "fields": "reference"
+        },
+        "backend_response": {"reference": "PO169", "total_quantity": 200},
+        "final_response": "La commande avec la plus grande quantité totale est PO169 (200 unités)."
+    },
+    {
+        "question": "Quelle est la demande de prix la plus ancienne non envoyée ?",
+        "entity": "rfq",
+        "intent": "get",
+        "query_params": {
+            "filter": "oldest_unsent",
+            "fields": "reference"
+        },
+        "backend_response": {"reference": "RFQ-111", "created_date": "2024-11-01"},
+        "final_response": "La demande de prix la plus ancienne non envoyée est RFQ-111 (créée le 01/11)."
+    },
+    {
+        "question": "Quelle est la demande de prix avec le plus grand nombre de produits ?",
+        "entity": "rfq",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_products",
+            "fields": "reference"
+        },
+        "backend_response": {"reference": "RFQ-112", "product_count": 10},
+        "final_response": "La demande de prix avec le plus grand nombre de produits est RFQ-112 (10 produits)."
+    },
+    {
+        "question": "Quelle est la demande de prix avec le délai le plus court ?",
+        "entity": "rfq",
+        "intent": "get",
+        "query_params": {
+            "filter": "shortest_deadline",
+            "fields": "reference"
+        },
+        "backend_response": {"reference": "RFQ-113", "deadline": "2024-12-20"},
+        "final_response": "La demande de prix avec le délai le plus court est RFQ-113 (échéance 20/12)."
+    },
+    {
+        "question": "Quelle est la demande de prix avec le délai le plus long ?",
+        "entity": "rfq",
+        "intent": "get",
+        "query_params": {
+            "filter": "longest_deadline",
+            "fields": "reference"
+        },
+        "backend_response": {"reference": "RFQ-114", "deadline": "2025-02-01"},
+        "final_response": "La demande de prix avec le délai le plus long est RFQ-114 (échéance 01/02)."
+    },
+    {
+        "question": "Quel est le rapport de performance fournisseur le plus récent ?",
+        "entity": "report",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_recent_vendor_performance",
+            "fields": "report_id"
+        },
+        "backend_response": {"report_id": "RPT-2024-Q4-002", "generation_date": "2024-12-01"},
+        "final_response": "Le rapport de performance fournisseur le plus récent est RPT-2024-Q4-002 (généré le 01/12)."
+    },
+    {
+        "question": "Quel est le rapport avec le score de qualité moyen le plus élevé ?",
+        "entity": "report",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_avg_quality_score",
+            "fields": "report_id"
+        },
+        "backend_response": {"report_id": "RPT-2024-Q3-001", "avg_quality_score": 9.2},
+        "final_response": "Le rapport avec le score de qualité moyen le plus élevé est RPT-2024-Q3-001 (score moyen: 9.2/10)."
+    },
+    {
+        "question": "Quel est le rapport avec le délai de livraison moyen le plus court ?",
+        "entity": "report",
+        "intent": "get",
+        "query_params": {
+            "filter": "shortest_avg_delivery_time",
+            "fields": "report_id"
+        },
+        "backend_response": {"report_id": "RPT-2024-Q2-001", "avg_delivery_time": 4.5},
+        "final_response": "Le rapport avec le délai de livraison moyen le plus court est RPT-2024-Q2-001 (moyenne: 4.5 jours)."
+    },
+    {
+        "question": "Quel est le rapport avec le score de prix moyen le plus élevé ?",
+        "entity": "report",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_avg_price_score",
+            "fields": "report_id"
+        },
+        "backend_response": {"report_id": "RPT-2024-Q1-001", "avg_price_score": 9.0},
+        "final_response": "Le rapport avec le score de prix moyen le plus élevé est RPT-2024-Q1-001 (score moyen: 9.0/10)."
+    },
+    {
+        "question": "Quel est le produit avec le plus grand nombre de commandes cette année ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_ordered_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Standard Mouse", "order_count": 120},
+        "final_response": "Le produit avec le plus grand nombre de commandes cette année est 'Standard Mouse' (120 commandes)."
+    },
+    {
+        "question": "Quel est le produit avec la plus grande quantité totale commandée cette année ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_total_quantity_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Office Chair", "total_quantity": 450},
+        "final_response": "Le produit avec la plus grande quantité totale commandée cette année est 'Office Chair' (450 unités)."
+    },
+    {
+        "question": "Quel est le produit avec la plus grande valeur totale commandée cette année ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_total_value_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Server Rack", "total_value": 125000.0},
+        "final_response": "Le produit avec la plus grande valeur totale commandée cette année est 'Server Rack' (125000.00€)."
+    },
+    {
+        "question": "Quel est le produit avec la plus grande remise moyenne appliquée cette année ?",
+        "entity": "product",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_avg_discount_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Bulk Item", "avg_discount": 20.5},
+        "final_response": "Le produit avec la plus grande remise moyenne appliquée cette année est 'Bulk Item' (20.5% de remise moyenne)."
+    },
+    {
+        "question": "Quel est le fournisseur avec le plus grand nombre de commandes cette année ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_orders_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "MainSupplier", "order_count": 85},
+        "final_response": "Le fournisseur avec le plus grand nombre de commandes cette année est MainSupplier (85 commandes)."
+    },
+    {
+        "question": "Quel est le fournisseur avec la plus grande valeur totale de commandes cette année ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_total_value_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "TechSolutions", "total_value": 250000.0},
+        "final_response": "Le fournisseur avec la plus grande valeur totale de commandes cette année est TechSolutions (250000.00€)."
+    },
+    {
+        "question": "Quel est le fournisseur avec le meilleur score de qualité cette année ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "filter": "best_quality_score_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "QualityFirst", "quality_score": 9.7},
+        "final_response": "Le fournisseur avec le meilleur score de qualité cette année est QualityFirst (score: 9.7/10)."
+    },
+    {
+        "question": "Quel est le fournisseur avec le délai de livraison moyen le plus court cette année ?",
+        "entity": "vendor",
+        "intent": "get",
+        "query_params": {
+            "filter": "fastest_delivery_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "SpeedySupply", "avg_delivery_time": 3.8},
+        "final_response": "Le fournisseur avec le délai de livraison moyen le plus court cette année est SpeedySupply (moyenne: 3.8 jours)."
+    },
+    {
+        "question": "Quel est l'acheteur avec le plus grand nombre de commandes cette année ?",
+        "entity": "buyer",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_orders_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Pierre Moreau", "order_count": 65},
+        "final_response": "L'acheteur avec le plus grand nombre de commandes cette année est Pierre Moreau (65 commandes)."
+    },
+    {
+        "question": "Quel est l'acheteur avec la plus grande valeur totale de commandes cette année ?",
+        "entity": "buyer",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_total_value_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Marie Dupont", "total_value": 180000.0},
+        "final_response": "L'acheteur avec la plus grande valeur totale de commandes cette année est Marie Dupont (180000.00€)."
+    },
+    {
+        "question": "Quel est l'acheteur avec le budget moyen par commande le plus élevé cette année ?",
+        "entity": "buyer",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_avg_order_value_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Jean Martin", "avg_order_value": 4500.0},
+        "final_response": "L'acheteur avec le budget moyen par commande le plus élevé cette année est Jean Martin (moyenne: 4500.00€)."
+    },
+    {
+        "question": "Quel est l'acheteur avec le pourcentage de commandes urgentes le plus élevé cette année ?",
+        "entity": "buyer",
+        "intent": "get",
+        "query_params": {
+            "filter": "highest_urgent_order_percentage_this_year",
+            "fields": "name"
+        },
+        "backend_response": {"name": "Sophie Martin", "urgent_percentage": 35.0},
+        "final_response": "L'acheteur avec le pourcentage de commandes urgentes le plus élevé cette année est Sophie Martin (35%)."
+    },
+    {
+        "question": "Quelle est la facture la plus récente ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_recent",
+            "fields": "numero"
+        },
+        "backend_response": {"numero": "INV-215", "date": "2024-12-15"},
+        "final_response": "La facture la plus récente est INV-215 (date: 15/12)."
+    },
+    {
+        "question": "Quelle est la facture la plus ancienne ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "filter": "oldest",
+            "fields": "numero"
+        },
+        "backend_response": {"numero": "INV-001", "date": "2024-01-01"},
+        "final_response": "La facture la plus ancienne est INV-001 (date: 01/01)."
+    },
+    {
+        "question": "Quelle est la facture avec le plus grand nombre de produits ?",
+        "entity": "invoice",
+        "intent": "get",
+        "query_params": {
+            "filter": "most_products",
+            "fields": "numero"
+        },
+        "backend_response": {"numero": "INV-216", "product_count": 12},
+        "final_response": "La facture avec le plus grand nombre de produits est INV-216 (12 produits)."
+    }
+]

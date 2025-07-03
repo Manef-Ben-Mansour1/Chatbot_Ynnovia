@@ -411,7 +411,7 @@ def main():
     trainer = OdooChatbotTrainer()
     
     # Train the model
-    dataset_path = "odoo_data.json"  # Path to your dataset
+    dataset_path = "deepseek+claude dataset.json"  # Path to your dataset
     output_dir = "./phi3-odoo-chatbot"
     inference_dir = "./phi3-odoo-inference"
     
